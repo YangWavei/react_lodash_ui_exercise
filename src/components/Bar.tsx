@@ -14,12 +14,8 @@ function Bar() {
     setCount(prev => prev + 2)
     // setCount(handleCountAdd) // 先执行函数，用其返回值作为新state
   }
-
-  /*   const handleCountAdd = (preState: number) => {
-      return preState + 1
-    }
-   */
   
+
   function decreaseCount() {
     setCount(prev => prev - 2)
   }
