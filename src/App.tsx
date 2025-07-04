@@ -1,15 +1,14 @@
-import Gallery from "./components/Gallery";
-import Profile from "./components/Profile";
+import AndLogic from "./components/AndLogic";
+import PackingList from "./components/PackingList";
 
 /** 主组件 */
 function App() {
   return (
     <div>
-      <h1 className='text-lime-600 text-6xl select-none'>App.tsx</h1>
+      <AndLogic isFlag={false} />
       <img src="/vite.svg" alt="" />
       <img src="/images/react.svg" alt="" />
-      {/* <Gallery /> */}
-      <Profile />
+      <PackingList />
     </div>
   );
 }
