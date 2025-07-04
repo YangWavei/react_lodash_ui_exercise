@@ -1,4 +1,5 @@
 import Gallery from "./components/Gallery";
+import Profile from "./components/Profile";
 
 /** 主组件 */
 function App() {
@@ -7,7 +8,8 @@ function App() {
       <h1 className='text-lime-600 text-6xl select-none'>App.tsx</h1>
       <img src="/vite.svg" alt="" />
       <img src="/images/react.svg" alt="" />
-      <Gallery />
+      {/* <Gallery /> */}
+      <Profile />
     </div>
   );
 }
