@@ -1,14 +1,14 @@
-import AndLogic from "./components/AndLogic";
-import PackingList from "./components/PackingList";
+import PackingList from "./components/Bar";
+import DrinkList from "./components/Drink";
 
 /** 主组件 */
 function App() {
   return (
     <div>
-      <AndLogic isFlag={false} />
       <img src="/vite.svg" alt="" />
       <img src="/images/react.svg" alt="" />
       <PackingList />
+      <DrinkList />
     </div>
   );
 }
