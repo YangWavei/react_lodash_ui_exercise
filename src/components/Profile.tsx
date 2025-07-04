@@ -4,8 +4,18 @@ import type { ReactNode } from "react";
 function Profile() {
   return (
     <div>
-      <Card name={"Photo"} imgUrl="https://i.imgur.com/OKS67lhm.jpg" size={80} />
-      <Card name="About" >
+      <Card >
+        <h1>Photo</h1>
+        <img
+          className="avatar"
+          src="https://i.imgur.com/OKS67lhm.jpg"
+          alt="Aklilu Lemma"
+          width={70}
+          height={70}
+        />
+      </Card>
+      <Card>
+        <h1>About</h1>
         <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
       </Card>
     </div>
@@ -14,30 +24,14 @@ function Profile() {
 
 
 interface cardPropsType {
-  name: string,
-  imgUrl?: string,
-  size?: number,
   children?: ReactNode
 }
 
-function Card({ name, imgUrl, size = 70, children }: cardPropsType) {
+function Card({ children }: cardPropsType) {
   return (
     <div className="card">
       <div className="card-content">
-        <h1>Photo</h1>
-        {/* 根据是否传入imgUrl属性来决定是否渲染图片
-        若未传入则渲染插槽内容 */}
-        {imgUrl ? (
-          <img
-            className="avatar"
-            src={imgUrl}
-            alt={name}
-            width={size}
-            height={size}
-          />
-        ) : (
-          children
-        )}
+        {children}
       </div>
     </div>
   );
