@@ -1,13 +1,16 @@
-import Bar from './components/Bar';
+import Gallery from "./components/Gallery";
 
 /** 主组件 */
 function App() {
   return (
     <div>
-      <Bar />
-      <h1 className=' text-lime-600 text-6xl'>App.tsx</h1>
+      <h1 className='text-lime-600 text-6xl select-none'>App.tsx</h1>
+      <img src="/vite.svg" alt="" />
+      <img src="/images/react.svg" alt="" />
+      <Gallery />
     </div>
   );
 }
-
+// Props是只读的时间快照：每次渲染时都会收到新版本的Props
+// 不能修改Props，(React的最大特性就是不可变数据)，当我们需要交互性时，可以设置state
 export default App;
