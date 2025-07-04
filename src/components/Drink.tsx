@@ -2,6 +2,11 @@ interface DrinkParamsType {
   name?: string
 }
 
+/** 饮品信息
+ * @description
+ * 每种饮品的信息是放在一起的，而没有分散到多余的条件判断里。
+ * 这会让我们以后更加容易得增加更多饮品。去掉了所有的条件判断语句
+ */
 const drinkData = {
   tea: {
     part: 'leaf',
@@ -23,7 +28,7 @@ function Drink({ name }: DrinkParamsType) {
   }
 
   const { part, caffeine, age } = data
-
+  
   return (
     <section>
       <h1>{name}</h1>
