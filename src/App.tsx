@@ -1,10 +1,10 @@
-import ListRender from "./components/ListRender";
+import Poem from "./components/Poem";
 
 /** 主组件 */
 function App() {
   return (
     <div>
-      <ListRender />
+      <Poem />
     </div>
   );
 }
