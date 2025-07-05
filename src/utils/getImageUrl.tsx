@@ -1,10 +1,4 @@
-interface PeopleItemType {
-  id: number,
-  name: string,
-  profession: string,
-  accomplishment: string,
-  imageId: string,
-}
+import type { PeopleItemType } from "../types";
 
 export function getImageUrl(person: PeopleItemType) {
   return (

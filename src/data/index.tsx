@@ -12,7 +12,7 @@ export const people = [
     profession: '化学家',
     accomplishment: '北极臭氧空洞的发现',
     imageId: 'mynHUSa',
-  },
+  },  
   {
     id: 2,
     name: '穆罕默德·阿卜杜勒·萨拉姆',
