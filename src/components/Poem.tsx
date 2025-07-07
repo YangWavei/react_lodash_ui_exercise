@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from "react"
+import { Fragment } from "react"
 
 const poem = {
   lines: [
