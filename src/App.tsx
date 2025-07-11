@@ -1,3 +1,4 @@
+import Signup from "./components/Signup";
 import ToolBar from "./components/ToolBar";
 
 /** 主组件 */
@@ -7,6 +8,7 @@ function App() {
       <img src='/images/react.svg' alt="react_logo" title="react_logo" />
       <img src='/vite.svg' alt="react_logo" title="react_logo" />
       <ToolBar />
+      <Signup />
     </div>
   );
 }
