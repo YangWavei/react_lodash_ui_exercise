@@ -13,7 +13,7 @@ interface MyButtonParamsType {
 function MyButton({ onSmash, children }: MyButtonParamsType) {
   return (
     <>
-      <Button onClick={onSmash} >
+      <Button size="large" onClick={onSmash} >
         {children}
       </Button>
     </>
@@ -50,4 +50,20 @@ function ToolBar() {
   )
 }
 
-export default ToolBar
+interface ToolBarMoreParamsType {
+  onPlayMovie: () => void
+  onUploadImage: () => void
+}
+function ToolBarMore({ onPlayMovie, onUploadImage }: ToolBarMoreParamsType) {
+  return (
+    <div className="flex gap-2">
+      <MyButton onSmash={onPlayMovie}>
+        播放电影
+      </MyButton>
+      <MyButton onSmash={onUploadImage} >
+        上传图片
+      </MyButton>
+    </div>
+  )
+}
+export default ToolBarMore
