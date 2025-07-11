@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import TeaGathering from "./components/TeaGathering";
+import InspirationGenerator from "./components/InspirationGenerator";
 
 /** 主组件 */
 function App() {
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-sky-100">
-      <TeaGathering />
+      <InspirationGenerator />
     </div>
   );
 }
