@@ -1,5 +1,6 @@
 import { Divider } from "antd";
-import Gallery from "./components/Gallery";
+import Form from "./components/Form";
+import Counter from "./components/Counter";
 
 /** 主组件 */
 function App() {
@@ -9,9 +10,10 @@ function App() {
         <img src='/images/react.svg' alt="react_logo" title="react_logo" />
         <img src='/vite.svg' alt="react_logo" title="react_logo" />
       </div>
-      <Gallery />
       <Divider />
-      <Gallery />
+      <Form />
+      <Counter />
+
     </div>
   );
 }
