@@ -1,52 +1,38 @@
 import { useState } from "react"
-import { Button, Input } from "antd";
+import { Button } from "antd";
 
 
-let initialShapes = [
-  { id: 0, type: 'circle', x: 50, y: 100 },
-  { id: 1, type: 'square', x: 150, y: 100 },
-  { id: 2, type: 'circle', x: 250, y: 100 },
+let initialCounters = [
+  0, 0, 0
 ];
-
 function List() {
-  const [shapes, setShapes] = useState(
-    initialShapes
+  const [counters, setCounters] = useState(
+    initialCounters
   );
 
-  function handleClick() {
-    const nextShapes = shapes.map(shape => {
-      if (shape.type === 'square') {
-        return shape
+  function handleIncrementClick(index: number) {
+    const nextCounters = counters.map((c, i) => {
+      if (i === index) {
+        return c + 1
       } else {
-        return {
-          ...shape,
-          y: shape.y + 50
-        }
+        return c
       }
     })
-    setShapes(nextShapes)
+    setCounters(nextCounters)
   }
-
+  
   return (
     <>
-      <Button type="primary" onClick={handleClick}>
-        所有圆形向下移动！
-      </Button>
-      {shapes.map(shape => (
-        <div
-          key={shape.id}
-          style={{
-            background: 'purple',
-            position: 'absolute',
-            left: shape.x,
-            top: shape.y,
-            borderRadius:
-              shape.type === 'circle'
-                ? '50%' : '',
-            width: 20,
-            height: 20,
-          }} />
-      ))}
+      <ul>
+        {counters.map((counter, i) => (
+          <li key={i} className="flex gap-2">
+            {counter}
+            <Button type="primary" danger onClick={() => {
+              handleIncrementClick(i);
+            }}>+1</Button>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
