@@ -1,5 +1,5 @@
 import { Divider } from "antd";
-import Counter from "./components/Counter";
+import RequestTracker from "./components/RequestTracker";
 
 /** 主组件 */
 function App() {
@@ -10,7 +10,7 @@ function App() {
         <img src='/vite.svg' alt="react_logo" title="react_logo" />
       </div>
       <Divider />
-      <Counter />
+      <RequestTracker />
     </div>
   );
 }
