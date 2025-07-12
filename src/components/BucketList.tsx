@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { Input } from 'antd';
+import { useImmer } from 'use-immer';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -8,36 +8,28 @@ const initialList = [
 ];
 
 function BucketList() {
-  const [myList, setMyList] = useState(initialList);
-
-  const [yourList, setYourList] = useState(
+  const [myList, updateMyList] = useImmer(
     initialList
   );
 
-  function handleToggleMyList(artworkId, nextSeen) {
-    // 注意这里是对原数组的浅拷贝，修改这个拷贝后的数组中的值会影响原数组
-    setMyList(myList.map(el => {
-      if (el.id === artworkId) {
-        // 创建包含变更的新对象
-        return { ...el, seen: nextSeen }
-      } else {
-        // 没有变更
-        return el
-      }
-    }));
+  const [yourList, updateYourList] = useImmer(
+    initialList
+  );
+
+  function handleToggleMyList(id: number, nextSeen: boolean) {
+    updateMyList(draft => {
+      const artwork = draft.find(a => a.id === id)
+      artwork!.seen = nextSeen
+    })
   }
 
-  function handleToggleYourList(artworkId, nextSeen) {
-    setYourList(yourList.map(el => {
-      if (el.id === artworkId) {
-        // 创建包含变更的对象
-        return { ...el, seen: nextSeen }
-      } else {
-        return el
-      }
-    }));
+  function handleToggleYourList(id: number, nextSeen: boolean) {
+    updateYourList(draft => {
+      const artwork = draft.find(a => a.id === id)
+      artwork!.seen = nextSeen
+    })
   }
-    
+
   return (
     <>
       <h1>艺术愿望清单</h1>
@@ -53,7 +45,13 @@ function BucketList() {
   )
 }
 
-function ItemList({ artworks, onToggle }) {
+
+interface ItemListParams {
+  artworks: typeof initialList
+  onToggle: (id: number, nextSeen: boolean) => void
+}
+
+function ItemList({ artworks, onToggle }: ItemListParams) {
   return (
     <ul>
       {artworks.map(artwork => (

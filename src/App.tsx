@@ -1,4 +1,5 @@
-import BucketList from './components/BucketList.jsx'
+import BucketList from "./components/BucketList";
+
 /** 主组件 */
 function App() {
   return (
