@@ -13,6 +13,7 @@ function Counter() {
         // 2.在下一次渲染期间，React会遍历队列并给你更新后的最终state
         setCount(count + 5)
         setCount(count => count + 1)
+        setCount(42)
         // setCount(count => count + 1)
         // setCount(count => count + 1)
       }}>
