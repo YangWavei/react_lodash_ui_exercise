@@ -71,3 +71,10 @@ export const sculptureList = [{
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
   alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
 }];
+
+
+export const initialTodos = [
+  { id: 0, title: 'Buy milk', done: true },
+  { id: 1, title: 'Eat tacos', done: false },
+  { id: 2, title: 'Brew tea', done: false },
+];
