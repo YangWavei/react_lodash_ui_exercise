@@ -1,10 +1,10 @@
-import BucketList from "./components/BucketList";
+import ShoppingCart from "./components/ShoppingCart";
 
 /** 主组件 */
 function App() {
   return (
     <div className="w-screen h-screen ">
-      <BucketList />
+      <ShoppingCart />
     </div>
   );
 }
