@@ -2,22 +2,16 @@ import { Button } from "antd"
 import { useState } from "react"
 
 function Counter() {
-  const [number, setNumber] = useState(0)
+  const [count, setCount] = useState(0)
   return (
     <>
-      <h1>{number}</h1>
-      <Button type="primary" size="large"
-        onClick={() => {
-          // 通知React在下一次渲染将 number的状态加 1
-          // `state 保存时间的快照`
-          // setNumber(number + 1)
-          // setNumber(number + 1)
-          // setNumber(number + 1)
-          setNumber(number + 5)
-          setTimeout(() => {
-            alert(number)
-          }, 3000);
-        }}>
+      <h1>{count}</h1>
+      <Button type="primary" size="large" onClick={() => {
+        // 这里告诉React `用state值做某事` 而不仅仅是替换它
+        setCount(count => count + 1)
+        setCount(count => count + 1)
+        setCount(count => count + 1)
+      }}>
         +3
       </Button>
     </>
