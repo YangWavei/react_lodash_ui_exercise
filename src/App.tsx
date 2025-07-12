@@ -1,10 +1,10 @@
-import MyForm from "./components/MyForm";
+import List from "./components/List";
 
 /** 主组件 */
 function App() {
   return (
     <div className="w-screen h-screen ">
-      <MyForm />
+      <List />
     </div>
   );
 }
