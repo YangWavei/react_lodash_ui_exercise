@@ -1,29 +1,32 @@
 import { useState } from "react"
 import { Button, Input } from "antd";
-let nextId = 0
-interface ListType {
-  id: number,
-  name: string
-}
+
+let initialArtists = [
+  { id: 0, name: 'Marta Colvin Andrade' },
+  { id: 1, name: 'Lamidi Olonade Fakeye' },
+  { id: 2, name: 'Louise Nevelson' },
+];
 
 function List() {
-  const [name, setName] = useState('')
-  const [artists, setArtists] = useState<ListType[]>([])
-  
+  const [artists, setArtists] = useState(initialArtists)
+
   return (
     <>
       <h1>振奋人心的雕塑家们：</h1>
-      <Input
-        value={name}
-        className="w-[300px]"
-        onChange={e => setName(e.target.value)}
-      />
-      <Button onClick={() => {
-        setArtists([...artists, { id: nextId++, name }])
-      }}>添加</Button>
       <ul>
         {artists.map(artist => (
-          <li key={artist.id}>{artist.name}</li>
+          <li key={artist.id} className="flex gap-2">
+            {artist.name}
+            <Button type="primary" danger onClick={() => {
+              setArtists(
+                artists.filter(a =>
+                  a.id !== artist.id
+                )
+              );
+            }}>
+              删除
+            </Button >
+          </li>
         ))}
       </ul>
     </>
