@@ -1,10 +1,10 @@
-import TaskApp from "./components/TaskApp";
+import Picture from "./components/Picture";
 
 /** 主组件 */
 function App() {
   return (
-    <div className="w-screen h-screen ">
-      <TaskApp />
+    <div className="w-screen h-screen">
+      <Picture />
     </div>
   );
 }
