@@ -1,9 +1,10 @@
-import FocusPage from "./components/FocusPage";
+import CatFriends from "./components/CatFriends";
+
 /** 主组件 */
 const App = () => {
   return (
     <>
-      <FocusPage />
+      <CatFriends />
     </>
   )
 }
