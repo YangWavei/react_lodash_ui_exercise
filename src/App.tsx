@@ -1,10 +1,9 @@
-import VideoPlayer from "./components/VideoPlayer";
+import FocusPage from "./components/FocusPage";
 /** 主组件 */
 const App = () => {
   return (
     <>
-      <div className="w-[100px] h-[30px] bg-sky-500"></div>
-      <VideoPlayer />
+      <FocusPage />
     </>
   )
 }
