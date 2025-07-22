@@ -1,12 +1,8 @@
-import SearchButton from "./components/SearchButton";
-
-/** 主组件 */
-const App = () => {
+function App() {
   return (
-    <>
-      <SearchButton />
-    </>
+    <div>
+      <header className="w-screen h-[100px]  bg-red-400"></header>
+    </div>
   )
-}
-
+};
 export default App;
