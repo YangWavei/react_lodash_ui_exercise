@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, type FC } from 'react';
+import { useCallback, useEffect, useMemo, useRef, type FC } from 'react';
 import { HotTable, type HotTableProps, type HotTableRef } from '@handsontable/react-wrapper';
 import Handsontable from 'handsontable';
 import { registerAllModules } from 'handsontable/registry';
@@ -114,18 +114,26 @@ const HandsomeTable: FC = () => {
 
 
 
-  // // 删除行前的回调处理
-  // const handleBeforeRemoveRow = useCallback((core: Handsontable.Core, key: string, selection: Selection[], clickEvent: MouseEvent) => {
-  //   const rows = getSelectedRowsHanlderByRightMenuClick(selection, core)
-  //   console.log("🚀 ~ handleBeforeRemoveRow ~ rows:", rows)
-  // }, [])
-
+  const handleBeforeGetCellMeta = (row: number, col: number, cellProperties: Record<keyof any, any>) => {
+    console.log(cellProperties);
+    const rowData = hotRef.current?.hotInstance?.getSourceDataAtRow(row) as any;
+    // determine the field
+    if (["address"].includes(cellProperties.prop)) {
+      // 在JS中双感叹号 !! 用于将一个值强制转换成Boolean类型
+      if (rowData && !!rowData.id) {
+        cellProperties.readOnly = true
+      } else {
+        cellProperties.readOnly = false
+      }
+    }
+  }
 
 
   return (
     <HotTable
       themeName="ht-theme-main"
       data={structuredClone(data)}
+      beforeGetCellMeta={handleBeforeGetCellMeta}
       ref={hotRef}
       rowHeaders={true}
       autoWrapRow={true}
@@ -143,28 +151,29 @@ const HandsomeTable: FC = () => {
       filters={true}
       manualRowMove={true}
       // 添加右键菜单删除选项配置
-      contextMenu={{
-        items: {
-          "row_remove": {
-            name: '删除行',
-            callback(this, _key, selection, _clickEvent) {
-              console.log(`selection`, selection);
-              const rowData = getSelectedRowsHandlerByRightMenuClick(selection as any, this)
-              console.log("🚀 ~ callback ~ rowData:", rowData)
-              // 获取当前表格数据
-              const currentData = this.getSourceData();
-              console.log("🚀 ~ callback ~ currentData:", currentData)
-              // 过滤掉选中的行
-              const newData = currentData.filter((_: any, index: number) =>
-                //保留任何不在选中范围的行
-                !selection.some((sel: any) => sel.start.row <= index && sel.end.row >= index)
-              );
-              // 更新表格数据
-              this.loadData(newData);
-            },
-          }
-        }
-      }}
+      // contextMenu={{
+      //   items: {
+      //     "row_remove": {
+      //       name: '删除行',
+      //       callback(this, _key, selection, _clickEvent) {
+      //         console.log(`selection`, selection);
+      //         const rowData = getSelectedRowsHandlerByRightMenuClick(selection as any, this)
+      //         console.log("🚀 ~ callback ~ rowData:", rowData)
+      //         // 获取当前表格数据
+      //         const currentData = this.getSourceData();
+      //         console.log("🚀 ~ callback ~ currentData:", currentData)
+      //         // 过滤掉选中的行
+      //         const newData = currentData.filter((_: any, index: number) =>
+      //           //保留任何不在选中范围的行
+      //           !selection.some((sel: any) => sel.start.row <= index && sel.end.row >= index)
+      //         );
+      //         // 更新表格数据
+      //         this.loadData(newData);
+      //       },
+      //     }
+      //   }
+      // }}
+      contextMenu={true}
     />
   );
 };
