@@ -1,10 +1,8 @@
-import HandsomeTable from "./components/HandsomeTable";
+import MyTanstackTable from "./components/MyTanstackTable";
 
 function App() {
   return (
-    <div>
-      <HandsomeTable />
-    </div>
+    <MyTanstackTable />
   )
 };
 export default App;

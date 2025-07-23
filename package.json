@@ -12,6 +12,7 @@
   "dependencies": {
     "@handsontable/react-wrapper": "^16.0.1",
     "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/react-table": "^8.21.3",
     "antd": "^5.26.3",
     "handsontable": "^16.0.1",
     "immer": "^10.1.1",
