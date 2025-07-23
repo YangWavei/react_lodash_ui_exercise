@@ -1,10 +1,9 @@
-import Timer from "./components/Timer";
+import HandsomeTable from "./components/HandsomeTable";
 
 function App() {
   return (
     <div>
-      <header className="w-screen h-[100px]  bg-red-400"></header>
-      <Timer />
+      <HandsomeTable />
     </div>
   )
 };
