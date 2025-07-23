@@ -145,12 +145,22 @@ const HandsomeTable: FC = () => {
       // 添加右键菜单删除选项配置
       contextMenu={{
         items: {
-          row_remove: {
+          "row_remove": {
             name: '删除行',
             callback(this, _key, selection, _clickEvent) {
               console.log(`selection`, selection);
               const rowData = getSelectedRowsHandlerByRightMenuClick(selection as any, this)
               console.log("🚀 ~ callback ~ rowData:", rowData)
+              // 获取当前表格数据
+              const currentData = this.getSourceData();
+              console.log("🚀 ~ callback ~ currentData:", currentData)
+              // 过滤掉选中的行
+              const newData = currentData.filter((_: any, index: number) =>
+                //保留任何不在选中范围的行
+                !selection.some((sel: any) => sel.start.row <= index && sel.end.row >= index)
+              );
+              // 更新表格数据
+              this.loadData(newData);
             },
           }
         }
