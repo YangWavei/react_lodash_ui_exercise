@@ -36,3 +36,18 @@ export const _difference2 = (array: number[], values: number[]) => {
   return array.filter(item => !values.includes(item))
 };
 
+export const _difference3 = (array: number[], ...arr: number[][]) => {
+  //  将所有要排除的数组合并成一个数组
+  const flatArr = arr.flat()
+  /*// Array.flat() 创建一个新数组，并根据指定深度,递归将所有的子数组元素
+    // 拼接到新数组中
+    const arr = [0, 1, 2, [3, 4, 2], ['as', 'cli', '12']]
+    const flatArr = arr.flat()
+    console.log("🚀 ~ App ~ flatArr:", flatArr)
+    // [0, 1, 2, 3, 4, 2, "as", "cli", "12"] */
+  console.log(flatArr);
+  // 使用 Set 提高查找效率
+  const excludeSet = new Set(flatArr)
+  // 过滤出不在排除集合中的元素
+  return array.filter(item => !excludeSet.has(item))
+};
