@@ -1,6 +1,6 @@
-import { demo03 } from "./demo/map";
+import { setDemo1 } from "./demo/set";
 function App() {
-  demo03()
+  setDemo1()
   return (
     <div className="w-screen h-[30px] font-bold flex justify-center items-center">Lodash</div>
   )
