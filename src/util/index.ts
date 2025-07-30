@@ -4,3 +4,4 @@ export { _concat } from './lodash/array/concat';
 export { _difference, _difference2, _difference3 } from './lodash/array/difference';
 export { _differenceBy } from './lodash/array/differenceby';
 export { _drop } from './lodash/array/drop';
+export { _dropRight } from './lodash/array/dropRight';
