@@ -1,0 +1,8 @@
+/* 在这导入其它css文件 */
+@import './other.css';
+
+.test {
+  width: 100px;
+  height: 100px;
+  background-color: saddlebrown;
+}

@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+/* 定义自定义主题变量，整个项目可用 */
+@theme {
+  --GOUSHUHONG: #ed3333;
+  --FENHONG: #f2b9b2;
+
+  /* css 动画帧 */
+  @keyframes gradient {
+    0% {
+      background-position: 0 50%;
+    }
+
+    50% {
+      background-position: 100% 100%;
+    }
+
+    100% {
+      background-position: 0 50%;
+    }
+  }
+}
+
+@utility{
+  
+}
+
+@layer components {
+  .bg {
+    background: linear-gradient(-45deg, #dae, #f66, #3c9, #09f, rgb(182, 247, 121));
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+}
