@@ -3,12 +3,14 @@ import {
   _compact, _compact2, _compact3,
   _concat,
   _difference, _difference2, _difference3,
-  _differenceBy
+  _differenceBy,
+  _drop
 } from "./util";
 function App() {
-  console.log(_chunk4([2, 3, 4, 5, 23], 3));
-  console.log(_chunk4([2, 3, 4, 5, 23], 1));
-  console.log(_chunk4([2, 3, 4, 5, 23], 0));
+  console.log(_drop([1, 2, 3]));
+  console.log(_drop([1, 2, 3], 2));
+  console.log(_drop([1, 2, 3], 5));
+  console.log(_drop([1, 2, 3], 0));
   return (
     <div className="w-screen h-[30px] font-bold flex justify-center items-center">Lodash</div>
   )
