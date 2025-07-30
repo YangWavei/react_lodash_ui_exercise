@@ -6,19 +6,22 @@
  * @param iteratee 调用每个元素的迭代函数
  * @returns 返回过滤后的数组
  */
-export const _differenceBy = <T>(
+export function _differenceBy<T>(
   array: T[],
   values: T[],
-  iteratee: ((value: T) => any) | string
-): T[] => {
-  // 处理 iteratee 为字符串的情况（属性名）
+  iteratee: (value: T) => any | string) {
+  // 目前仅考虑 `iteratee` 为字符串或函数的情况
+  // 创建一个迭代器函数,这个迭代器函数会分别遍历
+  // array和values数组
+  // 迭代器函数
   const iterateeFunc = typeof iteratee === 'string'
     ? (item: any) => item[iteratee]
-    : iteratee as (value: T) => any;
+    : iteratee
+  // 遍历被查找数组，并使用set集合去重，优化查询过程，应用迭代器函数
+  const mappedValuesSet = new Set(values.map(iterateeFunc))
 
-  // 创建一个已处理值的 Set 以提高查找效率
-  const mappedValuesSet = new Set(values.map(iterateeFunc));
-
-  // 过滤出在 values 中找不到映射值的元素
-  return array.filter(item => !mappedValuesSet.has(iterateeFunc(item)));
+  // 遍历原始的 array数组，并对每个元素应用 迭代器函数，
+  // 检查处理后的值是否存在 `mappedValuesSet` 中
+  // 最后返回原始数组，而不是处理后的值
+  return array.filter(item => !mappedValuesSet.has(iterateeFunc(item)))
 }
