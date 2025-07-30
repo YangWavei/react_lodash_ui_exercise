@@ -2,14 +2,14 @@
  * 将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。
  * 如果array 无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
  */
-export const _chunk = (array: (number | string)[], size = 1) => {
-  //分块大小为0或者负数没有意义
+export const _chunk = <T>(array: T[], size = 1) => {
   if (size <= 0) return []
   const result = []
   for (let i = 0; i < array.length; i += size) {
+    // Add the segmented arrays together to from a two-dimensional array.
     result.push(array.slice(i, i + size))
   }
-  return result
+  return result;
 };
 
 /**
@@ -24,38 +24,32 @@ export const _chunk = (array: (number | string)[], size = 1) => {
  * @param size 
  * @returns 
  */
-export const _chunk2 = (array: (number | string)[], size = 1) => {
+export const _chunk2 = <T>(array: T[], size = 1) => {
   if (size <= 0) return []
   return Array.from(
-    // 创建一个指定长度的对象，作为 `Array.from()` 的第一个参数
-    // 这个对象没有实际数组元素，只是指定了要创建的数组长度
-    // 使用ceil向上取整，保证了即使最后一块不完整也会被包含
-    { length: Math.ceil(array.length / size) },
-    // `_` 代表当前元素， `index` 是当前元素的索引
-    // 对于每个 `index`，从原数组中进行切片
-    (_, index) => array.slice(index * size, (index + 1) * size)
+    { length: Math.ceil(array.length / size) }, //Ensure the length of the array.
+    // Each element in the array.
+    (_, index) => array.slice(index, (index + 1) * size)
   )
 };
 
-export const _chunk3 = (array: (number | string)[], size = 1) => {
-  // 区块长度小于等于0没有意义
+export const _chunk3 = <T>(array: T[], size = 1) => {
   if (size <= 0) return []
-  let index = 0;
-  const res = []
+  let index = 0
+  const tempArr = []
   while (index < array.length) {
-    res.push(array.slice(index, index + size))
+    tempArr.push(array.slice(index, index + size))
     index += size
   }
-  return res;
+  return tempArr;
 };
 
-export const _chunk4 = (array: (string | number)[], size = 1) => {
+export const _chunk4 = <T>(array: T[], size = 1) => {
   if (size <= 0) return []
   return array.reduce((res, item, index) => {
-    const chunkIndex = Math.floor(index / size)
+    const chunkIndex = Math.floor(index / size);
     if (!res[chunkIndex]) res[chunkIndex] = []
     res[chunkIndex].push(item)
-    // 返回累积器，供下一次使用
-    return res
-  }, [] as (string | number)[][])
+    return res;
+  }, [] as T[][])
 };

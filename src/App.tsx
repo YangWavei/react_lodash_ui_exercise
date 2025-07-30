@@ -6,9 +6,9 @@ import {
   _differenceBy
 } from "./util";
 function App() {
-  const res = _differenceBy([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor)
-  console.log("🚀 ~ App ~ res:", res)
-  console.log(_differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x'));
+  console.log(_chunk4([2, 3, 4, 5, 23], 3));
+  console.log(_chunk4([2, 3, 4, 5, 23], 1));
+  console.log(_chunk4([2, 3, 4, 5, 23], 0));
   return (
     <div className="w-screen h-[30px] font-bold flex justify-center items-center">Lodash</div>
   )
