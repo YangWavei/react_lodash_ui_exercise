@@ -1,9 +1,16 @@
 @import "tailwindcss";
 
-/* 定义自定义主题变量，整个项目可用 */
+/* 加载本地字体 */
+@font-face {
+  font-family: 'MapleMono-Italic';
+  src: url('/public/font/MapleMono-TTF/MapleMono-Italic.ttf') format('trueType');
+}
+
+/* 自定义设计标记，如字体，颜色和断点等 */
 @theme {
   --GOUSHUHONG: #ed3333;
   --FENHONG: #f2b9b2;
+  --MapleMono-Italic: 'MapleMono-Italic';
 
   /* css 动画帧 */
   @keyframes gradient {
@@ -21,14 +28,15 @@
   }
 }
 
-@utility{
-  
-}
 
 @layer components {
   .bg {
     background: linear-gradient(-45deg, #dae, #f66, #3c9, #09f, rgb(182, 247, 121));
     background-size: 200% 200%;
     animation: gradient 8s ease infinite;
+  }
+
+  .default-text {
+    font-family: var(--MapleMono-Italic);
   }
 }

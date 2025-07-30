@@ -1,7 +1,6 @@
 import { clsx } from "clsx";
 import type { ReactNode } from "react";
-import './ZY-Button.css';
-import ZB_Style from "./ZY-Button.module.css";
+
 /**
  * 自定义按钮
  */
@@ -20,9 +19,6 @@ function ZY_Button({ className, children, onClick, type = 'default', size = 'def
         }>
         {children}
       </button>
-      <div className="test"></div>
-      <div className="box"></div>
-      <div className={ZB_Style.son}></div>
     </>
   )
 };
