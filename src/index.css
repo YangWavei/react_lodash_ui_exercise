@@ -3,7 +3,7 @@
 /* 加载本地字体 */
 @font-face {
   font-family: 'MapleMono-Italic';
-  src: url('/public/font/MapleMono-TTF/MapleMono-Italic.ttf') format('trueType');
+  src: url('/public/font/MapleMono-TTF/MapleMono-Italic.ttf') format('openType');
 }
 
 /* 自定义设计标记，如字体，颜色和断点等 */
@@ -11,6 +11,8 @@
   --GOUSHUHONG: #ed3333;
   --FENHONG: #f2b9b2;
   --MapleMono-Italic: 'MapleMono-Italic';
+  /* 贝塞尔曲线 */
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
 
   /* css 动画帧 */
   @keyframes gradient {
@@ -28,6 +30,18 @@
   }
 }
 
+/* 自定义使用工具类 作为原生TailWindCss的补充,里面可以写css */
+@utility flex-center {
+  /* `@apply` 指令将任何现有的实用程序类内联到自定义的css中 */
+  @apply flex justify-center items-center;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+@utility global-fontFamily {
+  font-family: var(--MapleMono-Italic);
+}
 
 @layer components {
   .bg {
@@ -35,8 +49,7 @@
     background-size: 200% 200%;
     animation: gradient 8s ease infinite;
   }
-
-  .default-text {
-    font-family: var(--MapleMono-Italic);
-  }
 }
+
+/* 自定义变体 */
+@custom-variant dark (&:where(.dark, .dark *));

@@ -1,14 +1,10 @@
-import ZY_Button from "./components/uuiMortyDesign/Button/ZY-Button";
+import ZY_Card from "./components/uuiMortyDesign/Card/ZY-Card";
 function App() {
   return (
-    <div className="w-screen h-screen ">
-      <ZY_Button onClick={() => console.log('clicked!')}>
-        ZY
-      </ZY_Button>
-      <div className="default-text">
-        <h1>肖振洋</h1>
-        const cachedFn = useCallback(fn, dependencies)
-      </div>
+    <div className="w-screen h-screen">
+      <ZY_Card >
+        <span className="dark:text-sky-300"> 我是插槽中的内容 </span>
+      </ZY_Card>
     </div>
   )
 };
