@@ -5,3 +5,4 @@ export { _difference, _difference2, _difference3 } from './lodash/array/differen
 export { _differenceBy } from './lodash/array/differenceby';
 export { _drop } from './lodash/array/drop';
 export { _dropRight } from './lodash/array/dropRight';
+export { _dropRightWhile } from './lodash/array/dropRightWhile';

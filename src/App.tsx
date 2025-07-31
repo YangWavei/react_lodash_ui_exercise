@@ -5,13 +5,26 @@ import {
   _difference, _difference2, _difference3,
   _differenceBy,
   _drop,
-  _dropRight
+  _dropRight,
+  _dropRightWhile
 } from "./util";
+
+type User = {
+  user: string,
+  active: boolean
+}
+
 function App() {
-  console.log(_dropRight([1, 2, 3]));
-  console.log(_dropRight([1, 2, 3], 2));
-  console.log(_dropRight([1, 2, 3], 5));
-  console.log(_dropRight([1, 2, 3], 0));
+
+  // 测试用例1: 基本用法 - 根据对象属性过滤
+  const users = [
+    { 'user': 'barney', 'active': true },
+    { 'user': 'fred', 'active': false },
+    { 'user': 'pebbles', 'active': false }
+  ];
+  // 移除从右到左所有active为false的元素
+  console.log(_dropRightWhile<User>(users, value => !value.active));
+
   return (
     <div className="w-screen h-[30px] font-bold flex justify-center items-center">Lodash</div>
   )
