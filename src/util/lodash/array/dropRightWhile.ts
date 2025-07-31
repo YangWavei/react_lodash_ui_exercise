@@ -5,15 +5,15 @@
  * @param predicate 
  */
 export const _dropRightWhile = <T>(array: T[], predicate: I_predicate<T>) => {
-  // Handle boundary cases
-  if (!array.length || array.length === 0) return [];
-  // Method one: Reverse traversal search.
-  let index = array.length - 1
-  // 从右往左遍历，找到第一个使得 `predicate` 返回 false 的元素位置
+  // 
+  if (!array || array.length === 0) return [];
+  // The index of the last element in the array.
+  let index = array.length - 1;
+  // 从右往左遍历，找到使得数组中元素调用 `predicate` 返回false的索引
   while (index >= 0 && predicate(array[index], index, array)) {
     index--
   }
-  return array.slice(0, index + 1)
+  return array.slice(0, index)
 };
 
 
