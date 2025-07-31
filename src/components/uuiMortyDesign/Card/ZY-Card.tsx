@@ -13,7 +13,7 @@ function ZY_Card({ ...props }: I_ZY_Card) {
     <>
       <Button onClick={toggleMode}>Dark Mode</Button>
       <div className="box px-2 py-3">
-        <Icon className='cursor-pointer text-[20px]  dark:text-yellow-400' icon="uiw:smile-o" />
+        <Icon className='cursor-pointer text-[20px]  text-red-400 dark:text-yellow-400' icon="uiw:smile-o" />
         <h1 className='font-bold'>Writesupside-down 写字颠倒</h1>
         <article>{props.children}</article>
         <p className='text-[14px]'>The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.</p>

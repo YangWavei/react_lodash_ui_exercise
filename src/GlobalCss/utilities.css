@@ -1,0 +1,13 @@
+/* 自定义实用工具类 作为原生TailWindCss的补充,里面可以写css */
+@utility global-fontFamily {
+  font-family: var(--MapleMono-Italic);
+}
+
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+@utility someBtn {
+  @apply w-[100px] h-[100px] bg-sky-300
+}
+

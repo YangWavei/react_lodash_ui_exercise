@@ -1,12 +1,17 @@
 @import "tailwindcss";
+@reference './GlobalCss/utilities.css';
 
+/* -------------------------------------------------------------------------- */
 /* 加载本地字体 */
 @font-face {
   font-family: 'MapleMono-Italic';
-  src: url('/public/font/MapleMono-TTF/MapleMono-Italic.ttf') format('openType');
+  src: url('/font/MapleMono-TTF/MapleMono-Italic.ttf') format('openType');
 }
 
-/* 自定义设计标记，如字体，颜色和断点等 */
+/* -------------------------------------------------------------------------- */
+/* 由于 @theme 中的内容和 @utility 中的工具类是相互关联的(比如工具类中引用theme中的变量)，因此
+   不适合将 `theme` 写在单独的页面
+*/
 @theme {
   --GOUSHUHONG: #ed3333;
   --FENHONG: #f2b9b2;
@@ -30,26 +35,28 @@
   }
 }
 
-/* 自定义使用工具类 作为原生TailWindCss的补充,里面可以写css */
-@utility flex-center {
-  /* `@apply` 指令将任何现有的实用程序类内联到自定义的css中 */
-  @apply flex justify-center items-center;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-}
+/* 自定义变体 */
+@custom-variant dark (&:where(.dark, .dark *));
 
-@utility global-fontFamily {
-  font-family: var(--MapleMono-Italic);
-}
+/* 变体名称： theme-midnight
+  使用方式：theme-midnight:工具类
+  分解：
+  [data-theme="midnight"] 匹配具有属性 data-theme="midnight" 的元素
+  [data-theme="midnight"] *  匹配所有位于data-theme="midnight"元素内部的后代元素
+  &:where(...)：:where()是一个CSS伪类函数，用于降低优先级，括号内的选择器优先级被降为0。&代表当前应用工具类的元素。
+*/
 
-@layer components {
-  .bg {
-    background: linear-gradient(-45deg, #dae, #f66, #3c9, #09f, rgb(182, 247, 121));
-    background-size: 200% 200%;
-    animation: gradient 8s ease infinite;
+/* @custom-variant theme-midnight (&:where([data-theme="midnight"] *)) */
+@custom-variant theme-midnight {
+  /* & :代表当前元素，在css嵌套中,&代表父选择器，但在这里它作为变体选择器的一部分，表示当前应用这个变体的元素。
+    :where() 是css的伪类函数，它接受一个选择器列表作为参数，并将css权重设置为0，这意味着
+      在:where() 内的选择器不会增加整个选择器的权重
+    
+    理解：应用了当前变体的工具类生效的条件是=> 当前元素是任何在具有 data-theme="midnight" 属性内的元素
+  */
+  &:where([data-theme="midnight"] *) {
+    @slot
   }
 }
 
-/* 自定义变体 */
-@custom-variant dark (&:where(.dark, .dark *));
+/* 使用 @slot 指令来确定规则在自定义变体中的放置位置 */
