@@ -13,11 +13,15 @@
    不适合将 `theme` 写在单独的页面
 */
 @theme {
-  --GOUSHUHONG: #ed3333;
-  --FENHONG: #f2b9b2;
+  --color-main: #F3E2D4;
+  --color-second: #C5B0CD;
+  --color-third: #415E72;
+  --color-fourth: #17313E;
+  --color-shadowText: #ff6384;
   --MapleMono-Italic: 'MapleMono-Italic';
   /* 贝塞尔曲线 */
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --hoverShadowAnimate: hoverShadowAnimate 0.5s linear infinite;
 
   /* css 动画帧 */
   @keyframes gradient {
@@ -31,6 +35,26 @@
 
     100% {
       background-position: 0 50%;
+    }
+  }
+
+  @keyframes hoverShadowAnimate {
+
+    0%,
+    25% {
+      text-shadow: 2px 2px 2px var(--color-shadowText);
+    }
+
+    50% {
+      text-shadow: 2px -2px 2px var(--color-shadowText);
+    }
+
+    75% {
+      text-shadow: -2px 2px 2px var(--color-shadowText);
+    }
+
+    100% {
+      text-shadow: -2px -2px 2px var(--color-shadowText);
     }
   }
 }
@@ -48,6 +72,7 @@
 
 /* @custom-variant theme-midnight (&:where([data-theme="midnight"] *)) */
 @custom-variant theme-midnight {
+
   /* & :代表当前元素，在css嵌套中,&代表父选择器，但在这里它作为变体选择器的一部分，表示当前应用这个变体的元素。
     :where() 是css的伪类函数，它接受一个选择器列表作为参数，并将css权重设置为0，这意味着
       在:where() 内的选择器不会增加整个选择器的权重
