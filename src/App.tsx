@@ -6,25 +6,15 @@ import {
   _differenceBy,
   _drop,
   _dropRight,
-  _dropRightWhile
+  _dropRightWhile,
+  _fill
 } from "./util";
 
-type User = {
-  user: string,
-  active: boolean
-}
-
 function App() {
-
-  // 测试用例1: 基本用法 - 根据对象属性过滤
-  const users = [
-    { 'user': 'barney', 'active': true },
-    { 'user': 'fred', 'active': false },
-    { 'user': 'pebbles', 'active': false }
-  ];
-  // 移除从右到左所有active为false的元素
-  console.log(_dropRightWhile<User>(users, value => !value.active));
-
+  let array = [1, 2, 3];
+  console.log(_fill(array, 'a'));
+  console.log(_fill(Array(3), 2));
+  console.log(_fill([4, 6, 8, 10], '*', 1, 3));
   return (
     <div className="w-screen h-[30px] font-bold flex justify-center items-center">Lodash</div>
   )

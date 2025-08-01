@@ -7,3 +7,4 @@ export { _drop } from './lodash/array/drop';
 export { _dropRight } from './lodash/array/dropRight';
 export { _dropRightWhile } from './lodash/array/dropRightWhile';
 export { _dropWhile } from './lodash/array/dropWhile';
+export { _fill } from './lodash/array/fill';
