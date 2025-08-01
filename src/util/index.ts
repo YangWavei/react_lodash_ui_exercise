@@ -6,3 +6,4 @@ export { _differenceBy } from './lodash/array/differenceby';
 export { _drop } from './lodash/array/drop';
 export { _dropRight } from './lodash/array/dropRight';
 export { _dropRightWhile } from './lodash/array/dropRightWhile';
+export { _dropWhile } from './lodash/array/dropWhile';
