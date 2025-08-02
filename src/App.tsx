@@ -1,10 +1,10 @@
-import FloatingUnderline from "./components/InterestingCSS/2_FloatingUnderline/FloatingUnderline";
+import TextGradient from "./components/InterestingCSS/3_TextGradient/TextGradient";
 
 function App() {
   return (
     <div className="w-screen h-screen">
-      <FloatingUnderline />
+      <TextGradient />
     </div>
-  )
-};
+  );
+}
 export default App;

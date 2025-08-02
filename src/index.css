@@ -58,6 +58,16 @@
       text-shadow: -2px -2px 2px var(--color-shadowText);
     }
   }
+
+  @keyframes flowCss {
+    0% {
+      background-position: 0, 0;
+    }
+
+    100% {
+      background-position: -400%, 0;
+    }
+  }
 }
 
 /* 自定义变体 */
@@ -80,9 +90,42 @@
     
     理解：应用了当前变体的工具类生效的条件是=> 当前元素是任何在具有 data-theme="midnight" 属性内的元素
   */
+
   &:where([data-theme="midnight"] *) {
+    /* 使用 @slot 指令来确定规则在自定义变体中的放置位置 */
     @slot
   }
 }
 
-/* 使用 @slot 指令来确定规则在自定义变体中的放置位置 */
+.gradientFlowingLightText {
+  background: -webkit-linear-gradient(135deg,
+      #0eaf6d,
+      #ff6ac6 25%,
+      #147b96 50%,
+      #e6d205 55%,
+      #2cc4e0 60%,
+      #8b2ce0 80%,
+      #ff6384 95%,
+      #08dfb4);
+  /* 指定文本符号的填充颜色，若未设置则使用 `color` 属性值 */
+  -webkit-text-fill-color: transparent;
+  /* 背景裁剪，让文字使用背景色 */
+  background-clip: text;
+  /* 背景图放大一下，看着柔和一些 */
+  background-size: 200% 200%;
+  animation: flowCss 12s infinite linear;
+}
+
+.gradientFlowingLightText:hover {
+  animation: flowCss 4s infinite linear;
+}
+
+.test {
+  width: 200px;
+  height: 200px;
+  background: url('/public/favicon.png') no-repeat fixed top left / 100% text;
+  font-size: 50px;
+  -webkit-text-fill-color: transparent;
+  /* 背景被裁剪成文字的前景色 */
+  /* background-clip: text; */
+}
