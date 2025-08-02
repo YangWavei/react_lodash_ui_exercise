@@ -9,3 +9,4 @@ export { _dropRightWhile } from "./lodash/array/dropRightWhile";
 export { _dropWhile } from "./lodash/array/dropWhile";
 export { _fill } from "./lodash/array/fill";
 export { _findIndex } from "./lodash/array/findIndex";
+export { _findLastIndex } from "./lodash/array/findLastIndex";
