@@ -11,3 +11,6 @@ Q1：CSS 中 `background` 属性的简写形式遵循如下顺序
 1. background-position
 1. background-size (注意尺寸前需要斜杠)
 1. background-clip
+
+示例：  background: [color] url('/public/favicon.png') no-repeat fixed top left / 100% text;
+
