@@ -1,9 +1,9 @@
-import TextGradient from "./components/InterestingCSS/3_TextGradient/TextGradient";
+import TypewriterEffect from "./components/InterestingCSS/4_TypewriterEffect/TypewriterEffect";
 
 function App() {
   return (
     <div className="w-screen h-screen">
-      <TextGradient />
+      <TypewriterEffect />
     </div>
   );
 }

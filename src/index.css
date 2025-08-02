@@ -23,8 +23,9 @@
   /* 贝塞尔曲线 */
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --hoverShadowAnimate: hoverShadowAnimate 0.5s linear infinite;
+  --animate-typewriteEffectAnimate: typingWords 5s steps(25), cursor 0.5s steps(1) infinite;
 
-  /* css 动画帧 */
+  /* css 动画帧 ，in this case, `@apply` directive cannot be used. */
   @keyframes gradient {
     0% {
       background-position: 0 50%;
@@ -66,6 +67,18 @@
 
     100% {
       background-position: -400%, 0;
+    }
+  }
+
+  @keyframes typingWords {
+    0% {
+      width: 0;
+    }
+  }
+
+  @keyframes cursor {
+    50% {
+      border-color: transparent;
     }
   }
 }

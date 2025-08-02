@@ -1,7 +1,9 @@
 export default function TextGradient() {
   return (
     <>
-      <h1 className="gradientFlowingLightText font-bold text-[2rem]">文字颜色渐变流光效果</h1>
+      <span className="gradientFlowingLightText font-bold text-[2rem] select-none cursor-pointer">
+        文字颜色渐变流光效果
+      </span>
     </>
   );
 }
