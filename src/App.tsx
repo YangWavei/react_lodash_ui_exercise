@@ -1,16 +1,8 @@
-import { _findLastIndex } from "./util";
+import { _head } from "./util";
 
 function App() {
-  const users = [
-    { user: "barney", active: true },
-    { user: "fred", active: false },
-    { user: "pebbles", active: false },
-  ];
-  console.log(_findLastIndex(users, (o) => o.user === "pebbles"));
-  console.log(_findLastIndex(users, { user: "barney", active: true }));
-  console.log(_findLastIndex(users, ["active", false]));
-  console.log(_findLastIndex(users, "active"));
-
+  console.log(_head([1, 2, 3]));
+  console.log(_head([]));
   return <div className="w-screen h-[30px] font-bold flex justify-center items-center">Lodash</div>;
 }
 export default App;
