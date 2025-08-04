@@ -12,3 +12,4 @@ export { _findIndex } from "./lodash/array/findIndex";
 export { _findLastIndex } from "./lodash/array/findLastIndex";
 export { _head } from "./lodash/array/head";
 export { _flatten, _flatten2, _flatten3 } from "./lodash/array/flatten";
+export { _flattenDeep, _flattenDeep2 } from "./lodash/array/flattenDeep";
