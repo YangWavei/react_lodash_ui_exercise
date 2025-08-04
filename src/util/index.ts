@@ -16,3 +16,4 @@ export { _flattenDeep, _flattenDeep2 } from "./lodash/array/flattenDeep";
 export { _flattenDepth, _flattenDepth2, _flattenDepth3 } from "./lodash/array/flattenDepth";
 export { _fromPairs, _fromPairs2, _fromPairs3 } from "./lodash/array/fromPairs";
 export { _intersection } from "./lodash/array/intersection";
+export { _join, _join2 } from "./lodash/array/join";
