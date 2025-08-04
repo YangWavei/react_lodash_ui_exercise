@@ -15,3 +15,4 @@ export { _flatten, _flatten2, _flatten3 } from "./lodash/array/flatten";
 export { _flattenDeep, _flattenDeep2 } from "./lodash/array/flattenDeep";
 export { _flattenDepth, _flattenDepth2, _flattenDepth3 } from "./lodash/array/flattenDepth";
 export { _fromPairs, _fromPairs2, _fromPairs3 } from "./lodash/array/fromPairs";
+export { _intersection } from "./lodash/array/intersection";
