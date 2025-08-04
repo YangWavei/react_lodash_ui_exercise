@@ -18,3 +18,4 @@ export { _fromPairs, _fromPairs2, _fromPairs3 } from "./lodash/array/fromPairs";
 export { _intersection } from "./lodash/array/intersection";
 export { _join, _join2 } from "./lodash/array/join";
 export { _pull, _pull2 } from "./lodash/array/pull";
+export { _pullAt } from "./lodash/array/pullAt";
