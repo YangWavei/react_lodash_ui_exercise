@@ -1,8 +1,10 @@
-import { _join, _join2 } from "./util";
+import { _pull, _pull2 } from "./util";
 
 function App() {
-  console.log(_join(["a", "b", "c"], "~"));
-  console.log(_join2(["a", "b", "c"], "~"));
+  var array = [3, 1, 2];
+  // _pull(array, 2, 1);
+  _pull2(array, 2, 1);
+  console.log(array);
   return <div className="w-screen h-[30px] font-bold flex justify-center items-center">Lodash</div>;
 }
 export default App;
