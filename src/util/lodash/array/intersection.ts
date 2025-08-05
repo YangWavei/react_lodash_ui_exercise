@@ -1,22 +1,24 @@
 export function _intersection<T>(...arrays: T[][]) {
-  // 处理边界值情况
+  // Object.is() 静态方法用来确定两个值是否为相同值
+  // boundary case
   if (arrays.length === 0) return [];
   if (arrays.length === 1) return [...new Set(arrays.flat())]; //去重
 
-  // 以第一个数组为准，求这几个数组的交集，并最终返回一个数组
-  // 剩余参数运算符 ... ，rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中
-  const [first, ...rest] = arrays;
   const result: T[] = [];
+
+  const [first, ...rest] = arrays;
+  // 以第一个数组为准
   for (const item of first) {
-    // 判断当前元素是否在后面的所有数组中都存在
-    // Object.is() 静态方法判断两个值是否相同
-    const condition1 = rest.every((arr) => arr.some((el) => Object.is(item, el)));
-    if (condition1) {
-      // 判断当前元素是否已经存在与 result
-      if (!result.some((el) => Object.is(item, el))) {
-        result.push(item);
-      }
-    }
+    // My interpretation:
+    // example rest=[[1,9],[3,5,7]]
+    // every() 判断数组中的每一项元素是否都满足给定测试条件
+    // some() 这个给定的测试条件是 rest数组中的每一项元素的元素，比如[1,9]中的元素是否至少有
+    // 一项使得 Object.is(item,el) 为真，也就是二者的值相等为真
+    // 最终的判断就是：当前元素是否在后面传入的数组中都存在
+    const isHaveSameValue = rest.every((elArr) => elArr.some((el) => Object.is(item, el)));
+    // 检查 result 数组中是否以存在相同元素
+    const isExisting = !result.includes(item);
+    if (isHaveSameValue) isExisting && result.push(item);
   }
   return result;
 }
