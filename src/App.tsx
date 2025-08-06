@@ -5,6 +5,6 @@ function App() {
   const evens = _pullAt(arr, 1, 3);
   console.log(arr);
   console.log(evens);
-  return <div className="w-screen h-[30px] font-bold flex justify-center items-center">Lodash</div>;
+  return <div className="w-screen h-[30px] flex justify-center items-center">Lodash</div>;
 }
 export default App;
