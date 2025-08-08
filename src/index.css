@@ -1,6 +1,2 @@
+@import url("font.css");
 @import "tailwindcss";
-@import url("./font.css");
-
-body {
-  font-family: 'Inter Variable';
-}
