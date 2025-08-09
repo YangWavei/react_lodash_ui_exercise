@@ -5,7 +5,8 @@ import tseslint from "typescript-eslint";
 export default [
   {
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
-    ignores: ["eslint.config.js"], // 忽略 ESLint 配置文件本身
+    // 忽略 ESLint 配置文件本身
+    ignores: ["eslint.config.js"],
     plugins: {
       react: eslintPluginReact,
       "react-hooks": eslintPluginReactHooks,

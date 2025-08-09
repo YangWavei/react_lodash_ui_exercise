@@ -7,13 +7,19 @@
  * @param dir
  * @returns
  */
-export const alphabetical = <T>(
+export function _alphabetical<T>(
   array: readonly T[],
   getter: (item: T) => string,
-  dir: "asc" | "desc" = "asc"
-) => {
-  if (!array) return [];
+  dir: 'desc' | 'asc' = 'asc'
+) {
+  // 构造比较函数
+  // ${getter(a)} is referenceStr 
+  // getter(b) is compareStr
+  // A negative number if referenceStr occurs before compareString; 
+  // positive if the referenceStr occurs after compareString; 
+  // 0 if they are equivalent.
   const asc = (a: T, b: T) => `${getter(a)}`.localeCompare(getter(b));
-  const dsc = (a: T, b: T) => `${getter(b)}`.localeCompare(getter(a));
-  return array.slice().sort(dir === "desc" ? dsc : asc);
-};
+  const desc = (a: T, b: T) => `${getter(b)}`.localeCompare(getter(a));
+
+  return array.slice().sort(dir === 'desc' ? desc : asc);
+}
