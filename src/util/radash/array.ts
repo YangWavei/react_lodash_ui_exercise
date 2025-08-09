@@ -92,3 +92,45 @@ export function _cluster4<T>(array: T[], size = 1): T[][] {
     return array.slice(i * size, (i + 1) * size);
   });
 }
+
+/* -------------------------------------------------------------------------- */
+
+// 这里 PropertyKey 是准确的类型，因为返回值将作为对象的键
+export function _counting<T>(array: T[], getter: (item: T) => PropertyKey) {
+  if (!array || (array.length ?? 0) === 0) return null;
+  return array.reduce((res, item) => {
+    const itemValue = getter(item);
+    if (!res[itemValue]) {
+      res[itemValue] = 1;
+    } else {
+      res[itemValue]++;
+    }
+    return res;
+    // Record<Keys , Type> 返回一个对象类型，参数 Keys 用作键名，参数 Type 用作键值类型
+  }, {} as Record<PropertyKey, number>);
+}
+
+// 这里使用 PropertyKey 类型是准确的，getter函数的返回值要作为对象的键
+export function _counting2<T>(array: T[], getter: (item: T) => PropertyKey) {
+  if (!array || (array.length ?? 0) === 0) return null;
+  const obj: Record<PropertyKey, number> = {};
+  array.forEach(cur => {
+    const itemValue = getter(cur);
+    if (!obj[itemValue]) {
+      obj[itemValue] = 1;
+    } else {
+      obj[itemValue]++;
+    }
+  });
+  return obj;
+}
+
+export function _counting3<T>(list: T[], identify: (item: T) => PropertyKey) {
+  if (!list || (list.length ?? 0) === 0) return {} as Record<PropertyKey, number>;
+  return list.reduce((res, cur) => {
+    const curValue = identify(cur);
+    // ?? null判断运算符，只有当运算符左侧的值为 null or undefined 时，才会返回运算符右侧的值
+    res[curValue] = (res[curValue] ?? 0) + 1;
+    return res;
+  }, {} as Record<PropertyKey, number>);
+}

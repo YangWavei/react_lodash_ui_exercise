@@ -1,17 +1,38 @@
-import { _alphabetical, _boil, _cluster, _cluster2, _cluster3, _cluster4 } from "./util/index";
-import { setDemo1 } from "./demo/set";
-const gods = ['Ra', 'Zeus', 'Loki', 'Vishnu', 'Icarus', 'Osiris', 'Thor', 'Apollo', 'Artemis', 'Athena'];
+import {
+  _alphabetical,
+  _boil,
+  _cluster,
+  _cluster2,
+  _cluster3,
+  _cluster4,
+  _counting,
+  _counting2,
+  _counting3
+
+} from "./util/index";
+const gods = [
+  {
+    name: 'Ra',
+    culture: 'egypt'
+  },
+  {
+    name: 'Zeus',
+    culture: 'greek'
+  },
+  {
+    name: 'Loki',
+    culture: 'greek'
+  }
+];
 
 function App() {
-  const res = _cluster(gods, 3);
-  const res2 = _cluster2(gods, 3);
-  const res3 = _cluster3(gods, 3);
-  const res4 = _cluster4(gods, 3);
+  const res = _counting(gods, g => g.culture);
+  const res2 = _counting2(gods, g => g.culture);
+  const res3 = _counting3(gods, g => g.culture);
+
   console.log("🚀 ~ App ~ res:", res);
   console.log("🚀 ~ App ~ res2:", res2);
   console.log("🚀 ~ App ~ res3:", res3);
-  console.log("🚀 ~ App ~ res4:", res4);
-  setDemo1();
 
   return (
     <div className="w-screen h-screen  bg-yellow-50/60">
