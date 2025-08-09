@@ -134,3 +134,85 @@ export function _counting3<T>(list: T[], identify: (item: T) => PropertyKey) {
     return res;
   }, {} as Record<PropertyKey, number>);
 }
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Given two arrays, returns an array of all items that exist in the first array 
+ * but do not exist in the second array.
+ */
+export function _diff<T>(first: T[], second: T[]) {
+  const isArray = Array.isArray(first) && Array.isArray(second);
+  if (!isArray) {
+    throw new Error("输入参数类型必须为 Array");
+  }
+  return first.filter(cur => !second.includes(cur));
+}
+
+/**
+ * Given two arrays, returns an array of all items that exist in the first array 
+ * but do not exist in the second array.
+ */
+export function _diff2<T>(first: T[], second: T[]) {
+  const isArray = Array.isArray(first) && Array.isArray(second);
+  if (!isArray) throw new Error("参数类型错误");
+  const resArr: T[] = [];
+
+  first.forEach(fir => {
+    let flag = false;
+    second.forEach(sec => {
+      if (fir === sec) {
+        flag = true;
+      }
+    });
+    if (!flag) {
+      resArr.push(fir);
+    }
+  });
+  return resArr;
+}
+
+/**
+ * Given two arrays, returns an array of all items that exist in the first array 
+ * but do not exist in the second array.
+ */
+export function _diff3<T>(first: T[], second: T[]) {
+  const isArray = Array.isArray(first) && Array.isArray(second);
+  if (!isArray) throw new Error("参数类型错误");
+  return first.reduce((res, cur) => {
+    let flag = false;
+    second.forEach(sec => {
+      if (sec === cur) flag = true;
+    });
+    if (!flag) {
+      res.push(cur);
+    }
+    return res;
+  }, [] as T[]);
+}
+
+/**
+ * Given two arrays, returns an array of all items that exist in the first array 
+ * but do not exist in the second array.
+ */
+export function _diff4<T>(first: T[], second: T[]) {
+  const isArray = Array.isArray(first) && Array.isArray(second);
+  if (!isArray) throw new Error("参数错误");
+
+  const resArr: T[] = [];
+  for (let i = 0; i < first.length; i++) {
+    let flag = false;
+    for (let j = 0; j < second.length; j++) {
+      if (first[i] === second[j]) {
+        flag = true;
+        break;
+      }
+    }
+    if (!flag)
+      resArr.push(first[i]);
+  }
+  return resArr;
+}
+
+
+/* -------------------------------------------------------------------------- */

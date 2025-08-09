@@ -31,5 +31,9 @@ export {
   _cluster4,
   _counting,
   _counting2,
-  _counting3
+  _counting3,
+  _diff,
+  _diff2,
+  _diff3,
+  _diff4
 } from './radash/array';
