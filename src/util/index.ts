@@ -22,4 +22,4 @@ export { _pullAt } from "./lodash/array/pullAt";
 export { _zip, _zip2 } from "./lodash/array/zip";
 export { _zipObject, _zipObject2, _zipObject3 } from "./lodash/array/zipObject";
 /* -------------------------------------------------------------------------- */
-export { _alphabetical, _boil } from './radash/array';
+export { _alphabetical, _boil, _cluster, _cluster2, _cluster3, _cluster4 } from './radash/array';

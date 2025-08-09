@@ -43,3 +43,52 @@ export function _boil<T>(array: readonly T[], compareFunc: (a: T, b: T) => T): T
   // 先前计算的结果作为参数传入，最后将结果汇总为单个返回值
   return array.reduce(compareFunc);
 }
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Split a list into many lists of the given size.
+ * Given an array of items and a desired cluster size (n), returns an array of arrays. 
+ * Each child array containing n (cluster size) items split as evenly as possible.
+ * @param array 
+ * @param size 
+ */
+export function _cluster<T>(array: T[], size = 1) {
+  if (!array || (array.length ?? 0) === 0) return [];
+  const resArr: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    resArr.push(array.slice(i, i + size));
+  }
+  return resArr;
+}
+
+export function _cluster2<T>(array: T[], size = 1) {
+  if (!array || (array.length ?? 0) === 0) return [];
+  // 构造一个二维数组
+  return Array.from(
+    // 使用 Math.ceil() 向上取整，保证子数组不够等分为size长度时也能够有足够的长度
+    { length: Math.ceil(array.length / size) },
+    // 映射函数
+    (_, index) => array.slice(index * size, (index + 1) * size)
+  );
+}
+
+export function _cluster3<T>(array: T[], size = 1) {
+  if (!array || (array.length ?? 0) === 0) return [];
+  return array.reduce((res, cur, i) => {
+    // determine block index
+    const chunkIndex = Math.floor(i / size);
+    if (!res[chunkIndex]) res[chunkIndex] = [];
+    res[chunkIndex].push(cur);
+    return res;
+  }, [] as T[][]);
+}
+
+export function _cluster4<T>(array: T[], size = 1): T[][] {
+  if (!array || (array.length ?? 0) === 0) return [];
+  const maxCount = Math.ceil(array.length / size);
+
+  return new Array(maxCount).fill(null).map((_cur, i) => {
+    return array.slice(i * size, (i + 1) * size);
+  });
+}
