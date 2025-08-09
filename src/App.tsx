@@ -1,4 +1,5 @@
 import { _alphabetical, _boil, _cluster, _cluster2, _cluster3, _cluster4 } from "./util/index";
+import { setDemo1 } from "./demo/set";
 const gods = ['Ra', 'Zeus', 'Loki', 'Vishnu', 'Icarus', 'Osiris', 'Thor', 'Apollo', 'Artemis', 'Athena'];
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
   console.log("🚀 ~ App ~ res2:", res2);
   console.log("🚀 ~ App ~ res3:", res3);
   console.log("🚀 ~ App ~ res4:", res4);
+  setDemo1();
 
   return (
     <div className="w-screen h-screen  bg-yellow-50/60">
