@@ -394,3 +394,30 @@ export function _group3<T>(list: T[], condition: (item: T) => PropertyKey): Part
 
   return obj;
 }
+
+/* -------------------------------------------------------------------------- */
+/**
+ * Given two arrays of item,returns true if any item exists in both arrays.
+ */
+export function _intersects<T>(firstArr: T[], secondArr: T[]) {
+  if (!firstArr || !secondArr) return false;
+  // 以第一个数组为基准
+  return firstArr.some(f => secondArr.includes(f));
+}
+
+/**
+ * Given two arrays of item,returns true if any item exists in both arrays.
+ */
+export function _intersects2<T>(listA: T[], listB: T[]) {
+  if (!listA || !listB) return false;
+  let flag = false;
+  for (let i = 0; i < listA.length; i++) {
+    for (let j = 0; j < listB.length; j++) {
+      if (listA[i] === listB[j]) {
+        flag = true;
+        break;
+      }
+    }
+  }
+  return flag;
+}

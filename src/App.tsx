@@ -1,30 +1,19 @@
 import {
-  _group,
-  _group2,
-  _group3
+  _intersects,
+  _intersects2
 } from "./util/index";
 
-const fish = [
-  {
-    name: 'Marlin',
-    source: 'ocean'
-  },
-  {
-    name: 'Bass',
-    source: 'lake'
-  },
-  {
-    name: 'Trout',
-    source: 'lake'
-  }
-];
+const oceanFish = ['tuna', 'tarpon'];
+const lakeFish = ['bass', 'trout'];
 
-const fishBySource = _group(fish, f => f.source); // => { ocean: [marlin], lake: [bass, trout] }
-const fishBySource2 = _group2(fish, f => f.source); // => { ocean: [marlin], lake: [bass, trout] }
-const fishBySource3 = _group3(fish, f => f.source); // => { ocean: [marlin], lake: [bass, trout] }
-console.log("🚀 ~ fishBySource:", fishBySource);
-console.log("🚀 ~ fishBySource2:", fishBySource2);
-console.log("🚀 ~ fishBySource3:", fishBySource3);
+console.log(_intersects(oceanFish, lakeFish));
+console.log(_intersects2(oceanFish, lakeFish));
+
+const brackishFish = ['tarpon', 'snook'];
+
+console.log(`------------------------------------`);
+console.log(_intersects(oceanFish, brackishFish));
+console.log(_intersects2(oceanFish, brackishFish));
 
 function App() {
   return (

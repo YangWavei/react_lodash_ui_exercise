@@ -44,7 +44,9 @@ export {
   _fork3,
   _group,
   _group2,
-  _group3
+  _group3,
+  _intersects,
+  _intersects2
 } from './radash/array';
 
 
