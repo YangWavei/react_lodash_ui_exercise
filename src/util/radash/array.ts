@@ -216,3 +216,181 @@ export function _diff4<T>(first: T[], second: T[]) {
 
 
 /* -------------------------------------------------------------------------- */
+
+
+// ... existing code ...
+/**
+ * 将数组扁平化一层
+ * @param array 需要扁平化的数组
+ * @returns 扁平化后的数组
+ */
+export function _flat<T>(array: T[]) {
+  if (!array || (array.length ?? 0) === 0) return [];
+  return array.flat();
+}
+
+/**
+ * 将二维数组扁平化为一维数组
+ * @param array 需要扁平化的二维数组
+ * @returns 扁平化后的一维数组
+ */
+export function _flat2<T>(array: T[][]) {
+  if (!array || (array.length ?? 0) === 0) return [];
+
+  const resArr = [];
+  // 遍历数组中的每个元素
+  for (let i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) {
+      // 如果元素是数组，则展开并添加到结果数组中
+      resArr.push(...array[i]);
+    } else {
+      // 如果元素不是数组，则直接添加到结果数组中
+      resArr.push(array[i]);
+    }
+  }
+  return resArr;
+}
+
+/**
+ * 使用 reduce 方法将二维数组扁平化为一维数组
+ * @param list 需要扁平化的二维数组
+ * @returns 扁平化后的一维数组
+ */
+export function _flat3<T>(list: T[][]) {
+  if (!list || (list.length ?? 0) === 0) return [];
+  // 使用 reduce 累积器将数组元素合并到一个数组中
+  return list.reduce((acc, cur) => {
+    if (Array.isArray(cur)) {
+      // 如果当前元素是数组，则展开并添加到累积器中
+      acc.push(...cur);
+    } else {
+      // 如果当前元素不是数组，则直接添加到累积器中
+      acc.push(cur);
+    }
+    return acc;
+  }, []);
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * 根据条件函数将数组拆分为两个数组
+ * 
+ * 给定一个项目数组和一个条件函数，返回两个数组：
+ * 第一个数组包含所有通过条件检查的项目，
+ * 第二个数组包含所有未通过条件检查的项目。
+ * 
+ * @param list - 需要拆分的项目数组
+ * @param filterFun - 用于测试每个项目的条件函数，返回 boolean 值
+ * @returns 包含两个数组的数组：第一个是通过条件的项目数组，第二个是未通过条件的项目数组
+ */
+export function _fork<T>(list: T[], filterFun: (a: T) => boolean) {
+  if (!Array.isArray(list) || (list.length ?? 0) === 0) return [];
+
+  const res = [];
+  const pass = [];
+  const fail = [];
+
+  for (const item of list) {
+    // 根据条件函数的结果将项目分类到通过或未通过数组
+    if (filterFun(item)) {
+      pass.push(item);
+    } else {
+      fail.push(item);
+    }
+  }
+
+  res.push(pass, fail);
+
+  return res;
+}
+
+/**
+ * 根据条件函数将数组拆分为两个数组
+ * 
+ * 给定一个项目数组和一个条件函数，返回两个数组：
+ * 第一个数组包含所有通过条件检查的项目，
+ * 第二个数组包含所有未通过条件检查的项目。
+ * 
+ * @param list - 需要拆分的项目数组
+ * @param filterFun - 用于测试每个项目的条件函数，返回 boolean 值
+ * @returns 包含两个数组的数组：第一个是通过条件的项目数组，第二个是未通过条件的项目数组
+ */
+export function _fork2<T>(list: T[], filterFun: (a: T) => boolean) {
+  if (!Array.isArray(list) || (list.length ?? 0) === 0) return [];
+
+  return list.reduce((res, item) => {
+    if (filterFun(item)) {
+      res[0].push(item);
+    } else {
+      res[1].push(item);
+    }
+    return res;
+  }, [[], []] as [T[], T[]]);
+}
+
+/**
+ * Split an array into two array based on
+ * a true/false condition function
+ */
+export function _fork3<T>(list: readonly T[], condition: (item: T) => boolean): [T[], T[]] {
+  return list.reduce((acc, cur) => {
+    const [pass, fail] = acc;
+    if (condition(cur)) {
+      return [[...pass, cur], fail];
+    } else {
+      return [pass, [...fail, cur]];
+    }
+  }, [[], []] as [T[], T[]]);
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * 根据给定的条件函数对数组进行分组
+ * 通常，这对于对数组进行分类很有用
+ * @param list 需要分组的元素数组
+ * @param condition 用于确定每个元素分组的函数，返回用作分组键的属性值
+ * @returns 一个对象，其键是分组条件产生的值，值是属于该组的元素数组
+ */
+export function _group<T>(list: T[], condition: (item: T) => PropertyKey): Partial<Record<PropertyKey, T[]>> {
+  return list.reduce((acc, cur) => {
+    const resKey = condition(cur);
+    if (!acc[resKey]) acc[resKey] = [];
+    acc[resKey].push(cur);
+    return acc;
+  }, {} as Record<PropertyKey, T[]>);
+}
+/**
+ * Sorts an array of items into groups. The return value is a map where the keys are
+ * the group ids the given getGroupId function produced and the value is an array of
+ * each item in that group.
+ */
+export const _group2 = <T, Key extends string | number | symbol>(
+  array: readonly T[],
+  getGroupId: (item: T) => Key
+): Partial<Record<Key, T[]>> => {
+  return array.reduce((acc, item) => {
+    const groupId = getGroupId(item);
+    if (!acc[groupId]) acc[groupId] = [];
+    acc[groupId].push(item);
+    return acc;
+  }, {} as Record<Key, T[]>);
+};
+
+/**
+ * Sorts an array of items into groups. The return value is a map where the keys are
+ * the group ids the given getGroupId function produced and the value is an array of
+ * each item in that group.
+ */
+export function _group3<T>(list: T[], condition: (item: T) => PropertyKey): Partial<Record<PropertyKey, T[]>> {
+  const obj = {} as Partial<Record<PropertyKey, T[]>>;
+
+  list.forEach(cur => {
+    const key = condition(cur);
+    if (!obj[key]) obj[key] = [];
+    obj[key].push(cur);
+  });
+
+  return obj;
+}

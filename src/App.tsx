@@ -1,32 +1,32 @@
 import {
-  _alphabetical,
-  _boil,
-  _cluster,
-  _cluster2,
-  _cluster3,
-  _cluster4,
-  _counting,
-  _counting2,
-  _counting3,
-  _diff,
-  _diff2,
-  _diff3,
-  _diff4
+  _group,
+  _group2,
+  _group3
 } from "./util/index";
 
-const oldWorldGods = ['ra', 'zeus'];
-const newWorldGods = ['vishnu', 'zeus'];
+const fish = [
+  {
+    name: 'Marlin',
+    source: 'ocean'
+  },
+  {
+    name: 'Bass',
+    source: 'lake'
+  },
+  {
+    name: 'Trout',
+    source: 'lake'
+  }
+];
+
+const fishBySource = _group(fish, f => f.source); // => { ocean: [marlin], lake: [bass, trout] }
+const fishBySource2 = _group2(fish, f => f.source); // => { ocean: [marlin], lake: [bass, trout] }
+const fishBySource3 = _group3(fish, f => f.source); // => { ocean: [marlin], lake: [bass, trout] }
+console.log("🚀 ~ fishBySource:", fishBySource);
+console.log("🚀 ~ fishBySource2:", fishBySource2);
+console.log("🚀 ~ fishBySource3:", fishBySource3);
 
 function App() {
-  const res = _diff(oldWorldGods, newWorldGods);
-  const res2 = _diff2(oldWorldGods, newWorldGods);
-  const res3 = _diff3(oldWorldGods, newWorldGods);
-  const res4 = _diff4(oldWorldGods, newWorldGods);
-
-  console.log("🚀 ~ App ~ res:", res);
-  console.log("🚀 ~ App ~ res2:", res2);
-  console.log("🚀 ~ App ~ res3:", res3);
-  console.log("🚀 ~ App ~ res4:", res4);
   return (
     <div className="w-screen h-screen  bg-yellow-50/60">
       测试 radash

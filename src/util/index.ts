@@ -35,5 +35,16 @@ export {
   _diff,
   _diff2,
   _diff3,
-  _diff4
+  _diff4,
+  _flat,
+  _flat2,
+  _flat3,
+  _fork,
+  _fork2,
+  _fork3,
+  _group,
+  _group2,
+  _group3
 } from './radash/array';
+
+
