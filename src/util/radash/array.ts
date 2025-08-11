@@ -1,3 +1,5 @@
+import type { T } from "vitest/dist/chunks/environment.d.cL3nLXbE.js";
+
 /**
  * Sort an array without modifying it and return
  * the newly sorted value. Allows for a string
@@ -420,4 +422,23 @@ export function _intersects2<T>(listA: T[], listB: T[]) {
     }
   }
   return flag;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * 重复执行指定次数的函数，并将上一次的结果传递给下一次执行
+ * 
+ * @param count 执行次数
+ * @param func 每次执行的函数，接收上一次的结果和当前索引作为参数
+ * @param initValue 初始值
+ * @returns 经过 count 次迭代计算后的最终结果
+ */
+export function _iterate<T>(count: number, func: (curValue: T, idx: number) => T, initValue: T) {
+  let res = initValue;
+  for (let i = 1; i <= count; i++) {
+    // 将上一次的计算结果作为参数传递给 `func` ，起到accumulate的作用
+    res = func(res, i);
+  }
+  return res;
 }

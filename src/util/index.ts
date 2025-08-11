@@ -22,31 +22,6 @@ export { _pullAt } from "./lodash/array/pullAt";
 export { _zip, _zip2 } from "./lodash/array/zip";
 export { _zipObject, _zipObject2, _zipObject3 } from "./lodash/array/zipObject";
 /* -------------------------------------------------------------------------- */
-export {
-  _alphabetical,
-  _boil,
-  _cluster,
-  _cluster2,
-  _cluster3,
-  _cluster4,
-  _counting,
-  _counting2,
-  _counting3,
-  _diff,
-  _diff2,
-  _diff3,
-  _diff4,
-  _flat,
-  _flat2,
-  _flat3,
-  _fork,
-  _fork2,
-  _fork3,
-  _group,
-  _group2,
-  _group3,
-  _intersects,
-  _intersects2
-} from './radash/array';
+export * from './radash/array';
 
 
