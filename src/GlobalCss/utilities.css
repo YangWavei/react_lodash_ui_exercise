@@ -1,0 +1,33 @@
+/* 自定义实用工具类 作为原生TailWindCss的补充,里面可以写css */
+@utility global-fontFamily {
+  font-family: var(--MapleMono-Italic);
+}
+
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+@utility someBtn {
+  @apply w-[100px] h-[100px] bg-sky-300
+}
+
+@utility hoverShadowBox {
+  /* 继续使用原生css，这是处理复杂自定义阴影的最佳方式 */
+  box-shadow:
+    1px 1px 2px var(--color-main),
+    2px 3px 4px var(--color-second),
+    4px 4px 4px var(--color-third);
+  @apply text-[var(--color-shadowText)] rounded flex-center
+}
+
+@utility beforeUnderline {
+  content: '';
+  height: 1px;
+  background-color: var(--color-xiaomi);
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  transition: all 0.36s;
+}
