@@ -1,5 +1,3 @@
-import type { T } from "vitest/dist/chunks/environment.d.cL3nLXbE.js";
-
 /**
  * Sort an array without modifying it and return
  * the newly sorted value. Allows for a string
@@ -441,4 +439,21 @@ export function _iterate<T>(count: number, func: (curValue: T, idx: number) => T
     res = func(res, i);
   }
   return res;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * 获取数组的最后一个元素
+ * @param list - 要获取最后一个元素的数组
+ * @param defaultValue - 当数组为空时返回的默认值，默认为 undefined
+ * @returns 数组的最后一个元素，如果数组为空则返回默认值
+ */
+export function _last<T>(list: T[], defaultValue?: T) {
+  if (!Array.isArray(list) || (list.length ?? 0) === 0) return defaultValue;
+  return list[list.length - 1];
+}
+
+export function _last2<T>(list: T[], defaultValue: T | null | undefined) {
+  return list?.length > 0 ? list[list.length - 1] : defaultValue;
 }
