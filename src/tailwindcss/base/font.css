@@ -1,0 +1,13 @@
+/* 加载本地字体 */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 600;
+  src: url(/fonts/InterVariable.woff2) format('woff');
+}
+
+
+@font-face {
+  font-family: 'MapleMono-Italic';
+  src: url('/font/MapleMono-TTF/MapleMono-Italic.ttf') format('openType');
+}

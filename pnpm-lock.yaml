@@ -23,12 +23,12 @@ importers:
       antd:
         specifier: ^5.26.3
         version: 5.26.3(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      eslint:
-        specifier: ^9.32.0
-        version: 9.32.0(jiti@2.4.2)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      eslint:
+        specifier: ^9.32.0
+        version: 9.32.0(jiti@2.4.2)
       handsontable:
         specifier: ^16.0.1
         version: 16.0.1
@@ -54,15 +54,9 @@ importers:
         specifier: ^2.1.5
         version: 2.1.5(@types/react@19.1.8)(react@19.1.0)
     devDependencies:
-<<<<<<< HEAD
-=======
-      '@eslint/js':
-        specifier: ^9.29.0
-        version: 9.29.0
       '@iconify/react':
         specifier: ^6.0.0
         version: 6.0.0(react@19.1.0)
->>>>>>> UI
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
