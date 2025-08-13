@@ -476,3 +476,19 @@ export function _merge<T extends Record<PropertyKey, any>, K extends keyof T>(
   });
   return originArr;
 }
+
+/* -------------------------------------------------------------------------- */
+export function _replaceOrAppend<T extends Record<PropertyKey, any>>(
+  array: T[],
+  item: T,
+  getter: (v: T) => boolean) {
+  if (!Array.isArray(array)) throw new Error("参数错误");
+
+  const existIdx = array.findIndex(v => getter(v) === getter(item));
+  if (existIdx !== -1) {
+    array[existIdx] = item;
+  } else {
+    array.push(item);
+  }
+  return array;
+}

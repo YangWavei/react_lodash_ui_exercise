@@ -4,26 +4,34 @@ function App() {
   const fish = [
     {
       name: 'Marlin',
-      weight: 105,
-      source: 'ocean'
+      weight: 105
     },
     {
-      name: 'Bass',
-      weight: 8,
-      source: 'lake'
+      name: 'Salmon',
+      weight: 19
     },
-
-  ];
-
-  const newsFish = [
     {
-      name: 'Bass',
-      weight: 13,
-      source: 'land'
+      name: 'Trout',
+      weight: 13
     }
   ];
 
-  console.log(RadashArray._merge(fish, newsFish, f => f.name));
+  const salmon = {
+    name: 'Salmon',
+    weight: 22
+  };
+
+  const sockeye = {
+    name: 'Sockeye',
+    weight: 8
+  };
+
+  const res1 = RadashArray._replaceOrAppend(fish, salmon, f => f.name === 'Salmon');
+  console.log("🚀 ~ App ~ res1:", res1);
+
+  const res2 = RadashArray._replaceOrAppend(fish, sockeye, f => f.name === 'Sockeye');
+  console.log("🚀 ~ App ~ res2:", res2);
+
   return (
     <div className="w-screen h-screen">
       测试 radash
