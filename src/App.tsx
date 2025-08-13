@@ -8,7 +8,7 @@ function App() {
     },
     {
       name: 'Bass',
-      weight: 8
+      weight: 7
     },
     {
       name: 'Trout',
@@ -16,10 +16,8 @@ function App() {
     }
   ];
 
-  const res = RadashArray._sort(fish, f => f.weight);
+  const res = RadashArray._sum(fish, f => f.weight);
   console.log("🚀 ~ App ~ res:", res);
-  const res2 = RadashArray._sort(fish, f => f.weight, true);
-  console.log("🚀 ~ App ~ res2:", res2);
 
   return (
     <div className="w-screen h-screen">

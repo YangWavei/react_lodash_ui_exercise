@@ -566,3 +566,9 @@ export function _sort<T>(array: T[], getter: (item: T) => number, order = false)
   const desc = (a: T, b: T) => getter(b) - getter(a);
   return array.slice().sort(order === true ? desc : asc);
 }
+
+/* -------------------------------------------------------------------------- */
+export function _sum<T>(array: T[], sumFn: (item: T) => number) {
+  if (!array || (array.length ?? 0) === 0) throw new Error("parameter error");
+  return array.map(v => sumFn(v)).reduce((pre, cur) => pre + cur);
+}
