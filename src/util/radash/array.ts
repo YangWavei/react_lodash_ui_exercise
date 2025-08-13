@@ -552,3 +552,9 @@ export function _shift2<T>(array: T[], n: number) {
     ...array.slice(0, array.length - shiftCount)
   ];
 }
+
+/* -------------------------------------------------------------------------- */
+export function _sift<T>(array: T[]) {
+  // filter 函数内部会自动将返回值转换为Boolean类型作比较
+  return array.filter(e => e);
+}
