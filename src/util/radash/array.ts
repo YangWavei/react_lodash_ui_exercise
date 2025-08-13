@@ -516,3 +516,17 @@ export function _replace<T>(array: readonly T[], item: T, getter: (v: T) => bool
 
   return copyArray;
 }
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Applies a filter and a map operation at once and in one pass.
+ * @param array 
+ * @param mapFn 
+ * @param filterFn 
+ * @returns 
+ */
+export function _select<T, R>(array: T[], mapFn: (v: T) => R, filterFn: (v: T) => unknown): R[] {
+  if (!Array.isArray(array) || (array.length ?? 0) === 0) throw new Error("参数错误");
+  return array.filter(filterFn).map(mapFn);
+}

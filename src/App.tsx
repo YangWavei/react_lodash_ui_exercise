@@ -4,35 +4,28 @@ function App() {
   const fish = [
     {
       name: 'Marlin',
-      weight: 105
+      weight: 105,
+      source: 'ocean'
     },
     {
-      name: 'Salmon',
-      weight: 19
+      name: 'Bass',
+      weight: 8,
+      source: 'lake'
     },
     {
       name: 'Trout',
-      weight: 13
+      weight: 13,
+      source: 'lake'
     }
   ];
 
-  const salmon = {
-    name: 'Salmon',
-    weight: 22
-  };
+  const res = RadashArray._select(
+    fish,
+    f => f.weight,
+    f => f.source === 'lake'
+  );
+  console.log("🚀 ~ App ~ res:", res);
 
-  const sockeye = {
-    name: 'Sockeye',
-    weight: 8
-  };
-
-  const res1 = RadashArray._replace(fish, salmon, f => f.name === 'Salmon');
-  console.log("🚀 ~ App ~ res1:", res1);
-
-  const res2 = RadashArray._replace(fish, sockeye, f => f.name === 'Sockeye');
-  console.log("🚀 ~ App ~ res2:", res2);
-
-  console.log(fish);
   return (
     <div className="w-screen h-screen">
 
