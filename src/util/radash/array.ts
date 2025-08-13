@@ -558,3 +558,11 @@ export function _sift<T>(array: T[]) {
   // filter 函数内部会自动将返回值转换为Boolean类型作比较
   return array.filter(e => e);
 }
+
+/* -------------------------------------------------------------------------- */
+export function _sort<T>(array: T[], getter: (item: T) => number, order = false) {
+  if (!array || (array.length ?? 0) === 0) throw new Error("parameter error");
+  const asc = (a: T, b: T) => getter(a) - getter(b);
+  const desc = (a: T, b: T) => getter(b) - getter(a);
+  return array.slice().sort(order === true ? desc : asc);
+}
