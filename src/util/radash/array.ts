@@ -572,3 +572,21 @@ export function _sum<T>(array: T[], sumFn: (item: T) => number) {
   if (!array || (array.length ?? 0) === 0) throw new Error("parameter error");
   return array.map(v => sumFn(v)).reduce((pre, cur) => pre + cur);
 }
+
+/* -------------------------------------------------------------------------- */
+
+export function _toggle<T>(array: T[], item: T, predicate?: (v: T) => unknown, options?: { strategy: 'default' | 'prepend'; }) {
+  if (!array || (array.length ?? 0) === 0) return [];
+  const idx = array.findIndex(cur => predicate ? predicate(cur) === predicate(item) : cur === item);
+  const resArr = array.slice();
+  if (idx !== -1) {
+    resArr.splice(idx, 1);
+  } else {
+    if (options?.strategy === 'prepend') {
+      resArr.unshift(item);
+    } else {
+      resArr.push(item);
+    }
+  }
+  return resArr;
+}

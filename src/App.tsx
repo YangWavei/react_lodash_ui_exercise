@@ -1,23 +1,16 @@
 import * as RadashArray from './util';
 
 function App() {
-  const fish = [
-    {
-      name: 'Marlin',
-      weight: 105
-    },
-    {
-      name: 'Bass',
-      weight: 7
-    },
-    {
-      name: 'Trout',
-      weight: 13
-    }
-  ];
+  const ra = { name: 'Ra' };
+  const zeus = { name: 'Zeus' };
+  const loki = { name: 'Loki' };
+  const vishnu = { name: 'Vishnu' };
+  const gods = [ra, zeus, loki];
+  const res = RadashArray._toggle(gods, ra, g => g.name);
+  const res2 = RadashArray._toggle(gods, vishnu, g => g.name, { strategy: 'prepend' });
 
-  const res = RadashArray._sum(fish, f => f.weight);
   console.log("🚀 ~ App ~ res:", res);
+  console.log("🚀 ~ App ~ res2:", res2);
 
   return (
     <div className="w-screen h-screen">
