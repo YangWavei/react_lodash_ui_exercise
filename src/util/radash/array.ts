@@ -1,3 +1,4 @@
+
 /**
  * Sort an array without modifying it and return
  * the newly sorted value. Allows for a string
@@ -8,22 +9,19 @@
  * @returns
  */
 export function _alphabetical<T>(
-  array: readonly T[],
-  getter: (item: T) => string,
-  dir: 'desc' | 'asc' = 'asc'
+  list: T[],
+  getter: (v: T) => string,
+  dir: 'asc' | 'desc' = 'asc'
 ) {
-  // 构造比较函数
-  // ${getter(a)} is referenceStr 
-  // getter(b) is compareStr
-  // A negative number if referenceStr occurs before compareString; 
-  // positive if the referenceStr occurs after compareString; 
-  // 0 if they are equivalent.
+  // 默认升序排列
+  // notice:sort()函数的返回值是经过排序的原始数组的引用，会修改原数组
+  // 所以这里拷贝一份新数组，再对新数组进行排序
+  // ascending function
   const asc = (a: T, b: T) => `${getter(a)}`.localeCompare(getter(b));
+  // descending function
   const desc = (a: T, b: T) => `${getter(b)}`.localeCompare(getter(a));
-
-  return array.slice().sort(dir === 'desc' ? desc : asc);
+  return list.slice().sort(dir === 'desc' ? desc : asc);
 }
-
 /* -------------------------------------------------------------------------- */
 
 /**
@@ -33,17 +31,12 @@ export function _alphabetical<T>(
  * @param array 
  * @returns 
  */
-export function _boil<T>(array: readonly T[], compareFunc: (a: T, b: T) => T): T | null {
-  // Null 判断运算符 `??` 只有在运算符左侧的值为 null 或者 undefined 时，才会返回右侧的值
-  if (!array || (array.length ?? 0) === 0) return null;
-  // reduce 方法 对数组中的每个元素执行 compareFunc 函数，从左到右将函数应用到每个元素，
-  // 最终将数组简化为单个值。比较函数决定在每一步中保留哪个元素，最终返回经过一系列比较后胜出的
-  // 元素。
-  // reduce() 方法对数组中的每个元素按顺序执行一个提供的 `reducer` 函数,每次运行reducer会将
-  // 先前计算的结果作为参数传入，最后将结果汇总为单个返回值
-  return array.reduce(compareFunc);
+export function _boil<T>(array: readonly T[], func: (a: T, b: T) => T) {
+  if (!array || (array.length ?? 0) === 0) {
+    return null;
+  }
+  return array.reduce(func);
 }
-
 /* -------------------------------------------------------------------------- */
 
 /**
@@ -432,15 +425,14 @@ export function _intersects2<T>(listA: T[], listB: T[]) {
  * @param initValue 初始值
  * @returns 经过 count 次迭代计算后的最终结果
  */
-export function _iterate<T>(count: number, func: (curValue: T, idx: number) => T, initValue: T) {
-  let res = initValue;
+export function _iterate<T>(count: number, func: (cur: T, idx: number) => T, initValue: T) {
+  let result = initValue;
   for (let i = 1; i <= count; i++) {
-    // 将上一次的计算结果作为参数传递给 `func` ，起到accumulate的作用
-    res = func(res, i);
+    // 将上一次函数计算结果作为参数传递给下一次func的调用
+    result = func(result, i);
   }
-  return res;
+  return result;
 }
-
 /* -------------------------------------------------------------------------- */
 
 /**
@@ -456,4 +448,31 @@ export function _last<T>(list: T[], defaultValue?: T) {
 
 export function _last2<T>(list: T[], defaultValue: T | null | undefined) {
   return list?.length > 0 ? list[list.length - 1] : defaultValue;
+}
+
+/* -------------------------------------------------------------------------- */
+export function _min<T>(array: readonly T[], getter?: (item: T) => number) {
+  // 若 getter 为 undefined 或 null 则使用恒等函数，这个函数直接返回输入的值本身
+  const get = getter ?? ((v: any) => v);
+  return _boil(array, (a, b) => (get(a) < get(b) ? a : b));
+}
+
+export function _max<T>(array: T[], getter?: (item: T) => number) {
+  const get = getter ?? ((v: any) => v);
+  return _boil(array, (a, b) => (get(a) > get(b) ? a : b));
+}
+
+export function _merge<T extends Record<PropertyKey, any>, K extends keyof T>(
+  originArr: T[],
+  newArr: T[],
+  compareFn: (item: T) => T[K]) {
+  newArr.forEach(newItem => {
+    const existingIndex = originArr.findIndex(originItem => compareFn(originItem) === compareFn(newItem));
+    if (existingIndex !== -1) {
+      originArr[existingIndex] = newItem;
+    } else {
+      originArr.push(newItem);
+    }
+  });
+  return originArr;
 }
