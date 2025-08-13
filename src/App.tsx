@@ -1,29 +1,8 @@
 import * as RadashArray from './util';
 
 function App() {
-  const fish = [
-    {
-      name: 'Marlin',
-      weight: 105,
-      source: 'ocean'
-    },
-    {
-      name: 'Bass',
-      weight: 8,
-      source: 'lake'
-    },
-    {
-      name: 'Trout',
-      weight: 13,
-      source: 'lake'
-    }
-  ];
-
-  const res = RadashArray._select(
-    fish,
-    f => f.weight,
-    f => f.source === 'lake'
-  );
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const res = RadashArray._shift(arr, 3);
   console.log("🚀 ~ App ~ res:", res);
 
   return (

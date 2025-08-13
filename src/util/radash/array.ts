@@ -530,3 +530,25 @@ export function _select<T, R>(array: T[], mapFn: (v: T) => R, filterFn: (v: T) =
   if (!Array.isArray(array) || (array.length ?? 0) === 0) throw new Error("参数错误");
   return array.filter(filterFn).map(mapFn);
 }
+
+/* -------------------------------------------------------------------------- */
+
+export function _shift<T>(array: T[], n: number) {
+  if (!Array.isArray(array) || (array.length ?? 0) === 0) throw new Error("参数Error");
+  const res = [];
+  for (let i = 1; i <= n; i++) {
+    res.unshift(array[array.length - i]);
+  }
+  res.push(...array.slice(0, array.length - n));
+  return res;
+}
+
+export function _shift2<T>(array: T[], n: number) {
+  if (!Array(array) || (array.length ?? 0) === 0) throw new Error("参数Error");
+  const shiftCount = Math.min(n, array.length); // 确保不会移位超过数组长度的元素数量
+  return [
+    // 获取数组末尾的n个元素
+    ...array.slice(-shiftCount),
+    ...array.slice(0, array.length - shiftCount)
+  ];
+}
