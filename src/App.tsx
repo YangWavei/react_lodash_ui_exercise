@@ -26,15 +26,16 @@ function App() {
     weight: 8
   };
 
-  const res1 = RadashArray._replaceOrAppend(fish, salmon, f => f.name === 'Salmon');
+  const res1 = RadashArray._replace(fish, salmon, f => f.name === 'Salmon');
   console.log("🚀 ~ App ~ res1:", res1);
 
-  const res2 = RadashArray._replaceOrAppend(fish, sockeye, f => f.name === 'Sockeye');
+  const res2 = RadashArray._replace(fish, sockeye, f => f.name === 'Sockeye');
   console.log("🚀 ~ App ~ res2:", res2);
 
+  console.log(fish);
   return (
     <div className="w-screen h-screen">
-      测试 radash
+
     </div>
   );
 }

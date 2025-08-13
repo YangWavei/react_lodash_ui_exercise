@@ -492,3 +492,27 @@ export function _replaceOrAppend<T extends Record<PropertyKey, any>>(
   }
   return array;
 }
+
+/* -------------------------------------------------------------------------- */
+/**
+ * 替换数组中的元素
+ * @param array 原始数组，只读
+ * @param item 要替换的新元素
+ * @param getter 用于比较元素是否相等的函数，返回boolean值
+ * @returns 替换后的新数组，如果未找到匹配元素则返回原数组的副本
+ */
+export function _replace<T>(array: readonly T[], item: T, getter: (v: T) => boolean) {
+  // 参数校验
+  if (!Array.isArray(array)) throw new Error("参数错误");
+
+  // 创建数组副本并查找匹配元素的索引
+  const copyArray = array.slice();
+  const existIdx = copyArray.findIndex(v => getter(v) === getter(item));
+
+  // 如果找到匹配元素，则替换该元素
+  if (existIdx !== -1) {
+    copyArray[existIdx] = item;
+  }
+
+  return copyArray;
+}
