@@ -590,3 +590,40 @@ export function _toggle<T>(array: T[], item: T, predicate?: (v: T) => unknown, o
   }
   return resArr;
 }
+/* -------------------------------------------------------------------------- */
+
+export function _unique<T extends Record<PropertyKey, unknown>, R extends keyof T>(array: T[], getter: (v: T) => T[R]) {
+  const seen = new Set();
+  // filter()方法创建给定数组的一部分的浅拷贝，包含通过给定测试函数的所有元素
+  return array.filter(f => {
+    const key = getter(f);
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
+export function _unique2<T extends Record<PropertyKey, unknown>, K extends keyof T>(array: T[], getter: (v: T) => T[K]) {
+  // Map 对象存储的是键值对集合
+  const map = new Map<T[K], T>();
+  array.forEach(f => {
+    const key = getter(f);
+    map.set(key, f); //后面的会覆盖前面的
+  });
+  return Array.from(map.values());
+}
+
+export function _unique3<T extends Record<PropertyKey, unknown>, K extends keyof T>(array: T[], getter: (v: T) => T[K]) {
+  // 双重 for 循环实现
+  const result: T[] = [];
+  for (const item of array) {
+    const key = getter(item);
+    const exist = result.some(resItem => getter(resItem) === key);
+    if (!exist) {
+      result.push(item);
+    }
+  }
+  return result;
+}
