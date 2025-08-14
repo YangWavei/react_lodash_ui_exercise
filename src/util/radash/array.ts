@@ -627,3 +627,20 @@ export function _unique3<T extends Record<PropertyKey, unknown>, K extends keyof
   }
   return result;
 }
+
+export function _zipToObject<T extends PropertyKey, K>(keysArr: T[], valuesArr: K[]) {
+  const map = new Map<T, K>();
+  // 遍历键数组，将键值对存入 map
+  for (let i = 0; i < keysArr.length; i++) {
+    map.set(keysArr[i], valuesArr[i]);
+  }
+  return Object.fromEntries(map);
+}
+
+
+export function _zipToObject2<T extends PropertyKey, K>(keysArr: T[], valuesArr: K[]) {
+  return keysArr.reduce((res, k, i) => {
+    res[k] = valuesArr[i];
+    return res;
+  }, {} as Record<T, K>);
+}

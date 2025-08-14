@@ -2,30 +2,14 @@ import * as RadashArray from './util';
 
 function App() {
 
-  const fish = [
-    {
-      name: 'Marlin',
-      weight: 105,
-      source: 'ocean'
-    },
-    {
-      name: 'Salmon',
-      weight: 22,
-      source: 'river'
-    },
-    {
-      name: 'Salmon',
-      weight: 22,
-      source: 'river'
-    }
-  ];
+  const names = ['ra', 'zeus', 'loki'];
+  const cultures = ['egypt', 'greek'];
 
-  const res = RadashArray._unique(fish, f => f.name);
-  const res2 = RadashArray._unique2(fish, f => f.name);
-  const res3 = RadashArray._unique3(fish, f => f.name);
+  const res = RadashArray._zipToObject(names, cultures);
+  const res2 = RadashArray._zipToObject2(names, cultures);
   console.log("🚀 ~ App ~ res:", res);
   console.log("🚀 ~ App ~ res2:", res2);
-  console.log("🚀 ~ App ~ res3:", res3);
+
   return (
     <div className="w-screen h-screen">
 
