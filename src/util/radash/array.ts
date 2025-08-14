@@ -628,16 +628,36 @@ export function _unique3<T extends Record<PropertyKey, unknown>, K extends keyof
   return result;
 }
 
-export function _zipToObject<T extends PropertyKey, K>(keysArr: T[], valuesArr: K[]) {
+
+// 重载函数签名
+export function _zipToObject<T extends PropertyKey, K>(keysArr: T[], valuesArr: K[]): Record<T, K>;
+export function _zipToObject<T extends PropertyKey, K>(keysArr: T[], defaultValue: K): Record<T, K>;
+export function _zipToObject<T extends PropertyKey, K>(keysArr: T[], valuesGenerator: (key: T, idx: number) => K): Record<T, K>;
+
+export function _zipToObject<T extends PropertyKey, K>(keysArr: T[], valuesArr: K[] | K | ((v: T, i: number) => K)) {
   const map = new Map<T, K>();
-  // 遍历键数组，将键值对存入 map
-  for (let i = 0; i < keysArr.length; i++) {
-    map.set(keysArr[i], valuesArr[i]);
+  if (Array.isArray(valuesArr)) {
+    // 遍历键数组，将键值对存入 map
+    for (let i = 0; i < keysArr.length; i++) {
+      map.set(keysArr[i], i < valuesArr.length ? valuesArr[i] : undefined as K);
+    }
+  } else if (typeof valuesArr === 'function') {
+    // 函数模式，根据键和索引生成值
+    for (let i = 0; i < keysArr.length; i++) {
+      const fn = valuesArr as (key: T, idx: number) => K;
+      const key = keysArr[i];
+      map.set(key, fn(key, i));
+    }
+  } else {
+    // defaultValue case
+    for (let i = 0; i < keysArr.length; i++) {
+      map.set(keysArr[i], valuesArr);
+    }
   }
   return Object.fromEntries(map);
 }
 
-
+/** base function */
 export function _zipToObject2<T extends PropertyKey, K>(keysArr: T[], valuesArr: K[]) {
   return keysArr.reduce((res, k, i) => {
     res[k] = valuesArr[i];
