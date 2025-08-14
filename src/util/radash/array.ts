@@ -664,3 +664,22 @@ export function _zipToObject2<T extends PropertyKey, K>(keysArr: T[], valuesArr:
     return res;
   }, {} as Record<T, K>);
 }
+
+/* -------------------------------------------------------------------------- */
+
+export function _zip<T, N>(headArr: T[], lastArr: N[]) {
+  if (!Array.isArray(headArr) || !Array.isArray(lastArr)) throw new Error("parameter error");
+  const maxLength = Math.max(headArr.length, lastArr.length);
+  return Array.from(
+    { length: maxLength },
+    (_, i) => [headArr[i], lastArr[i]]
+  );
+}
+
+export function _zip2<T, N>(headArr: T[], lastArr: N[]) {
+  if (!Array.isArray(headArr) || !Array.isArray(lastArr)) throw new Error("parameter error");
+  return headArr.reduce((res, _, i) => {
+    res[i] = [headArr[i], lastArr[i]];
+    return res;
+  }, [] as [T, N][]);
+}
