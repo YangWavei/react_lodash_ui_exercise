@@ -1,9 +1,10 @@
 import '@ant-design/v5-patch-for-react-19';
-import { createRoot } from "react-dom/client";
-import App from './App';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from "react-router";
 import "./index.css";
+import { router } from './router';
 
-createRoot(document.getElementById("root")!).render(
-  // 严格模式会调用每个组件函数2次 有助于找出违反规则的组件
-  <App />
+const root = document.getElementById("root")!;
+ReactDOM.createRoot(root).render(
+  <RouterProvider router={router} />
 );
