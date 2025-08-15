@@ -20,6 +20,18 @@ function App() {
           <Input type="text" placeholder="请输入" />
           <Button type="primary">Primary</Button>
         </Space>
+
+        <Divider />
+        <Space>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: '#F275AD'
+              }
+            }}>
+            <Button type="primary">Theme 2</Button>
+          </ConfigProvider>
+        </Space>
       </ConfigProvider>
     </>
   );
