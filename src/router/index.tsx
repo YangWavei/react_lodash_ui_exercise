@@ -1,7 +1,7 @@
 import { Button, Result } from "antd";
 import { createBrowserRouter } from "react-router";
 import App from "../App";
-import { Home } from "../page/Index";
+import { Detail, Home } from "../page/Index";
 
 // 数据式
 // 方案2: 如果需要嵌套路由，确保 Home 组件包含 Outlet
@@ -15,8 +15,8 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: 'home',
-        Component: Home,
+        path: 'detail',
+        Component: Detail,
       }
     ]
   },
