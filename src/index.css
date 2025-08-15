@@ -1,3 +1,5 @@
 @import "tailwindcss";
 @import "./tailwindcss/base/font.css";
+@import "./tailwindcss/base/global.css";
 @import "./tailwindcss/themes/index.css";
+@import "./tailwindcss/utilities/index.css";

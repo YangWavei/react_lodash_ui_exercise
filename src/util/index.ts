@@ -10,11 +10,11 @@ export { _dropWhile } from "./lodash/array/dropWhile";
 export { _fill } from "./lodash/array/fill";
 export { _findIndex } from "./lodash/array/findIndex";
 export { _findLastIndex } from "./lodash/array/findLastIndex";
-export { _head } from "./lodash/array/head";
 export { _flatten, _flatten2, _flatten3 } from "./lodash/array/flatten";
 export { _flattenDeep, _flattenDeep2 } from "./lodash/array/flattenDeep";
 export { _flattenDepth, _flattenDepth2, _flattenDepth3 } from "./lodash/array/flattenDepth";
 export { _fromPairs, _fromPairs2, _fromPairs3 } from "./lodash/array/fromPairs";
+export { _head } from "./lodash/array/head";
 export { _intersection } from "./lodash/array/intersection";
 export { _join, _join2 } from "./lodash/array/join";
 export { _pull, _pull2 } from "./lodash/array/pull";
@@ -23,5 +23,6 @@ export { _zip, _zip2 } from "./lodash/array/zip";
 export { _zipObject, _zipObject2, _zipObject3 } from "./lodash/array/zipObject";
 /* -------------------------------------------------------------------------- */
 export * from './radash/array';
+export * from './radash/number';
 
 

@@ -1,13 +1,38 @@
-/* 加载本地字体 */
+/* FONTS */
 @font-face {
-  font-family: 'Inter Variable';
+  font-family: "Geist";
   font-style: normal;
-  font-weight: 600;
-  src: url(/fonts/InterVariable.woff2) format('woff');
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/vercel/Geist[wght].woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "GeistMono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/vercel/GeistMono[wght].woff2") format("woff2");
+}
 
 @font-face {
-  font-family: 'MapleMono-Italic';
-  src: url('/font/MapleMono-TTF/MapleMono-Italic.ttf') format('openType');
+  font-family: "InterVariable";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/vercel/InterVariable-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGWWenKai";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/vercel/LXGWWenKai-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "LXGWWenKaiMono";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/vercel/LXGWWenKaiMono-Regular.ttf") format("truetype");
 }
