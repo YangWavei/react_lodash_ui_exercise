@@ -12,6 +12,11 @@ const Navigation: React.FC = () => {
             首页
           </Button>
         </Link>
+        <Link to="/home">
+          <Button type={location.pathname === "/home" ? "primary" : "default"}>
+            首页 (显式路径)
+          </Button>
+        </Link>
         <Link to="/detail/123">
           <Button type={location.pathname.startsWith("/detail") ? "primary" : "default"}>
             详情页 (ID: 123)
