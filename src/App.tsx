@@ -1,26 +1,27 @@
+import { Button, ColorPicker, ConfigProvider, Divider, Input, Space } from "antd";
 import { useState } from "react";
-import { ZButton, ZModal } from "./components";
 
 function App() {
-  const [visible, setVisible] = useState(false);
-  const handleConfirm = () => {
-    // other logic ...
-    setVisible(false);
-  };
-  const handleCancel = () => {
-    // other logic ...
-    setVisible(false);
-  };
-
+  const [primary, setPrimary] = useState('#016428');
   return (
-    <div className="w-screen h-screen">
-      <ZButton onClick={() => setVisible(true)}>open</ZButton>
-      <ZModal visible={visible} onCancel={handleCancel} onOk={handleConfirm}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </ZModal>
-    </div>
+    <>
+      <ColorPicker showText value={primary} onChange={color => setPrimary(color.toHexString())} />
+      <Divider />
+      <ConfigProvider
+        theme={{
+          token: {
+            // Seed Token 影响范围大
+            colorPrimary: primary,
+            // 派生变量，影响范围小
+            // colorBgContainer: '#f6ffed'
+          }
+        }}>
+        <Space>
+          <Input type="text" placeholder="请输入" />
+          <Button type="primary">Primary</Button>
+        </Space>
+      </ConfigProvider>
+    </>
   );
 }
 
