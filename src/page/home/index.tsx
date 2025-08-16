@@ -1,10 +1,10 @@
 import { Camera } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { useState } from "react";
-const iconlist = ['camera', 'armchair', 'rocking-chair', 'toggle-right', 'panel-top-dashed'] as const;
+const iconlist = ['camera', 'armchair', 'rocking-chair', 'toggle-right', 'panel-top-dashed', 'apple'] as const;
 
 export default function Index() {
-  const [iconName, setIconName] = useState<(typeof iconlist)[number]>('camera');
+  const [iconName, setIconName] = useState<(typeof iconlist)[number]>('apple');
 
   const handleToggleIcon = () => {
     const randomIdx = Math.floor(Math.random() * iconlist.length);
