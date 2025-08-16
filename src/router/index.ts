@@ -1,6 +1,8 @@
+import { Home } from '@/page';
 import { lazy, type ComponentType } from "react";
 import { type RouteObject } from "react-router";
 
+/** 用于懒加载组件 */
 export function createComponent(com: () => Promise<{ default: ComponentType<any>; }>) {
   const Component = lazy(com);
   return Component;
@@ -9,16 +11,14 @@ export function createComponent(com: () => Promise<{ default: ComponentType<any>
 const routes: RouteObject[] = [
   {
     path: '/',
-    Component: createComponent(() => import('../page/home/index')),
+    Component: Home,
     handle: {
       title: '首页'
-    },
-    children: [
-      {
-        path: 'detail',
-        Component: createComponent(() => import('../page/detail/index'))
-      }
-    ]
+    }
+  },
+  {
+    path: 'detail',
+    Component: createComponent(() => import('@/page/detail'))
   }
 ];
 
