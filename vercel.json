@@ -5,9 +5,6 @@
       "destination": "/index.html"
     }
   ],
-  "build": {
-    "env": {
-      "TS_NODE_PROJECT": "tsconfig.app.json"
-    }
-  }
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "dist"
 }
