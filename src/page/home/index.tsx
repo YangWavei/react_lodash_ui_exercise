@@ -1,34 +1,15 @@
-import { App, Button, Space } from "antd";
+import { DotPattern } from "@/components/magicui/dot-pattern";
 
 export default function Index() {
-  const { message, modal, notification } = App.useApp();
-
-  const handleOpenMessage = () => {
-    message.success('Success!');
-  };
-
-  const handleOpenModal = () => {
-    modal.warning({
-      title: 'This is a warning message',
-      content: 'some messages...some messages...',
-    });
-  };
-
-  const handleOpenNotification = () => {
-    notification.info({
-      message: 'notification topLeft',
-      description: 'Hello,Ant Design',
-      placement: 'topLeft'
-    });
-  };
 
   return (
-    <div>
-      <Space wrap>
-        <Button type="primary" onClick={handleOpenMessage}>Open Message</Button>
-        <Button type="primary" onClick={handleOpenModal}>Open Modal</Button>
-        <Button type="primary" onClick={handleOpenNotification}>Open notification</Button>
-      </Space>
+    <div className="w-full h-full text-[30px]">
+      {/* 背景 */}
+      <DotPattern className="absolute -z-50 flex" />
+      <nav className="h-[8vh] w-screen bg-red-400/40 flex justify-between">
+        <img className="w-[40px] h-[40px] flex-1/7" src="/vite.svg" alt="" />
+        <ul className="w-[400px] bg-[#a4a4a4] flex-6/7 flex justify-around"></ul>
+      </nav>
     </div>
   );
 };

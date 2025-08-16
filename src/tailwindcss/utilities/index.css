@@ -2,3 +2,7 @@
   font-family: 'Geist';
   font-size: 1rem;
 }
+
+@utility flex-center {
+  @apply justify-center items-center;
+}
