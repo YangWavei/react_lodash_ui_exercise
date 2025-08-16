@@ -13,7 +13,6 @@ export default function Index() {
 
   return (
     <div>
-      <div className="text-[40px] font-bold">测试</div>
       <Camera color="red" size={100} strokeWidth={1} fill="yellow" />
       <h1 className="font-bold">DynamicIcon</h1>
       <DynamicIcon className="cursor-pointer" name={iconName} onClick={handleToggleIcon} size={100} />
