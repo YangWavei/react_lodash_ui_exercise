@@ -5,8 +5,8 @@ interface I_DetailProps {
 
 const Detail: FC<I_DetailProps> = () => {
   return (
-    <div>
-      Detail
+    <div className="text-[30px] font-bold text-sky-500/80">
+      Detail Page
     </div>
   );
 };
