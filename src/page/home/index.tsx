@@ -1,22 +1,34 @@
-import { Camera } from "lucide-react";
-import { DynamicIcon } from "lucide-react/dynamic";
-import { useRef, useState } from "react";
-const iconlist = ['camera', 'armchair', 'rocking-chair', 'toggle-right', 'panel-top-dashed', 'apple'] as const;
+import { App, Button, Space } from "antd";
 
 export default function Index() {
-  const [iconName, setIconName] = useState<(typeof iconlist)[number]>('apple');
-  const idx = useRef(0);
-  const handleToggleIcon = () => {
-    const randomIdx = (idx.current + 1) % iconlist.length;
-    setIconName(() => iconlist[randomIdx]);
-    idx.current++;
+  const { message, modal, notification } = App.useApp();
+
+  const handleOpenMessage = () => {
+    message.success('Success!');
+  };
+
+  const handleOpenModal = () => {
+    modal.warning({
+      title: 'This is a warning message',
+      content: 'some messages...some messages...',
+    });
+  };
+
+  const handleOpenNotification = () => {
+    notification.info({
+      message: 'notification topLeft',
+      description: 'Hello,Ant Design',
+      placement: 'topLeft'
+    });
   };
 
   return (
     <div>
-      <Camera color="red" size={100} strokeWidth={1} fill="yellow" />
-      <h1 className="font-bold">DynamicIcon</h1>
-      <DynamicIcon className="cursor-pointer" name={iconName} onClick={handleToggleIcon} size={100} />
+      <Space wrap>
+        <Button type="primary" onClick={handleOpenMessage}>Open Message</Button>
+        <Button type="primary" onClick={handleOpenModal}>Open Modal</Button>
+        <Button type="primary" onClick={handleOpenNotification}>Open notification</Button>
+      </Space>
     </div>
   );
 };

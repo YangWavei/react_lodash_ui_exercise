@@ -1,7 +1,7 @@
 import '@ant-design/v5-patch-for-react-19';
-import { ConfigProvider } from "antd";
+import { App, ConfigProvider } from "antd";
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import RootApp from './App';
 import "./index.css";
 
 const root = document.getElementById("root")!;
@@ -16,7 +16,10 @@ createRoot(root).render(
       },
     }}
   >
-    <App />
+    {/* antd 的 App 包裹组件，用于提供可消费 React context 的 message.xxx、Modal.xxx、notification.xxx 的静态方法 */}
+    <App>
+      <RootApp />
+    </App>
   </ConfigProvider>
 
 );

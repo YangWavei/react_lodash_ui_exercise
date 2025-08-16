@@ -1,3 +1,5 @@
+/* antd 样式兼容 */
+@layer theme, base, antd, components, utilities;
 @import "tailwindcss";
 @import "./tailwindcss/base/font.css";
 @import "./tailwindcss/utilities/index.css"

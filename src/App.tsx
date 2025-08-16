@@ -40,7 +40,7 @@ const MyLoading = () => {
 
 const router = createBrowserRouter(routes);
 
-function App() {
+function RootApp() {
   return (
     <Suspense fallback={<MyLoading />}>
       <RouterProvider router={router} />
@@ -48,4 +48,4 @@ function App() {
   );
 };
 
-export default App;
+export default RootApp;
