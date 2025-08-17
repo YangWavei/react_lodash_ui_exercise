@@ -1,19 +1,8 @@
 @utility baseFontFamily {
   font-family: 'Geist';
-}
-
-@utility codeFont {
-  font-family: 'GeistMono';
-}
-
-@utility interFont {
-  font-family: 'InterVariable';
-}
-
-@utility lwkFont {
-  font-family: 'LXGWWenKai';
+  font-size: 1rem;
 }
 
 @utility flex-center {
-  @apply flex items-center justify-center
+  @apply justify-center items-center;
 }
