@@ -64,6 +64,7 @@ const authMiddleware: unstable_MiddlewareFunction = async ({ context }, next) =>
   return next();
 };
 
+/** 路由加载器在渲染路由组件之前提供数据 */
 const authLoader: LoaderFunction = ({ context }) => {
   const user = context.get(userContext);
   if (!user) {
@@ -124,7 +125,12 @@ const routes: RouteObject[] = [
   },
   {
     path: '/login',
-    Component: createComponent(() => import('@/page/middleWare/loginMiddleWare')),
+    lazy: async () => {
+      // 解构出默认导出
+      const { default: Component } = await import("@/page/middleWare/loginMiddleWare");
+      return { Component };
+    },
+    // Component: createComponent(() => import('@/page/middleWare/loginMiddleWare')),
     HydrateFallback: () => <Spin fullscreen />
   },
   {
