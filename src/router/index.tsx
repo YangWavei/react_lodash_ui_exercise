@@ -10,11 +10,11 @@ export function createComponent(com: () => Promise<{ default: ComponentType<any>
 }
 
 // 模拟fetchTeam函数，实际项目中应替换为真实的API调用
-async function fetchTeam(teamId: string | undefined) {
+async function fetchTeam(teamId: string | undefined, teamLocation: string | undefined) {
   // 模拟异步请求
-  return new Promise<{ name: string | undefined; }>(resolve => {
+  return new Promise<{ name: string, location: string | undefined; }>(resolve => {
     setTimeout(() => {
-      resolve({ name: `Team ${teamId}` });
+      resolve({ name: `Team ${teamId}`, location: teamLocation });
     }, 100);
   });
 }
@@ -60,12 +60,12 @@ const routes: RouteObject[] = [
     // introducing a layout component.
   },
   {
-    path: 'teams/:teamId',
+    path: 'teams/:teamId/p/:teamLocation',
     Component: Team,
     loader: async ({ params }) => {
       // params are aviable in loaders/actions
-      let team = await fetchTeam(params.teamId);
-      return { name: team.name };
+      let team = await fetchTeam(params.teamId, params.teamLocation);
+      return { name: team.name, teamLocation: team.location };
     },
     HydrateFallback: () => <Spin fullscreen />
   },
