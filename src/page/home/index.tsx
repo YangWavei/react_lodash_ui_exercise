@@ -1,4 +1,4 @@
-import { DotPattern } from "../../components/magicui/dot-pattern";
+import { DotPattern } from "@/components/magicui/dot-pattern";
 
 export default function Index() {
 
