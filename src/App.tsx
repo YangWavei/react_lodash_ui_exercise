@@ -38,7 +38,8 @@ const MyLoading = () => {
   );
 };
 
-const router = createBrowserRouter(routes);
+/** 传递给 `createBrowserRouter` 的对象被称为路由对象*/
+const router = createBrowserRouter(routes,);
 
 function RootApp() {
   return (

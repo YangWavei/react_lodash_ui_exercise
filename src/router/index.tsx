@@ -1,13 +1,23 @@
-import { EditProject, Home, Project, ProjectHome, Team } from "@/page";
+import { AuthMiddleWare, EditProject, Home, Middleware, Project, ProjectHome, Team } from "@/page";
 import { Button, Result, Spin } from "antd";
 import { lazy, type ComponentType } from "react";
-import { type RouteObject } from "react-router";
+import { type RouteObject, type unstable_MiddlewareFunction } from "react-router";
 
 /** 用于懒加载组件 */
 export function createComponent(com: () => Promise<{ default: ComponentType<any>; }>) {
   const Component = lazy(com);
   return Component;
 }
+
+// Typed middleware (hoisted above routes to avoid TDZ)
+const loggingMiddleware: unstable_MiddlewareFunction = async ({ request }, next) => {
+  const url = new URL(request.url);
+  console.log(`Starting navigation: ${url.pathname}${url.search}`);
+  const start = performance.now();
+  const result = await next();
+  console.log(`Navigation completed in ${performance.now() - start}ms`);
+  return result;
+};
 
 // 模拟fetchTeam函数，实际项目中应替换为真实的API调用
 async function fetchTeam(teamId: string | undefined, teamLocation: string | undefined) {
@@ -38,6 +48,17 @@ const routes: RouteObject[] = [
         path: 'detail',
         Component: createComponent(() => import('@/page/detail'))
       }
+    ]
+  },
+  {
+    path: '/middleware',
+    Component: Middleware,
+    // 最小 loader，确保中间件链路被触发！！！ 需要loader才能触发中间件！！！
+    loader: async () => null,
+    // 日志记录中间件（服务端/静态处理）
+    unstable_middleware: [loggingMiddleware],
+    children: [
+      { path: 'authmiddleware', Component: AuthMiddleWare },
     ]
   },
   {
