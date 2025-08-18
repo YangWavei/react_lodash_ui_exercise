@@ -1,7 +1,7 @@
 import { AuthMiddleWare, EditProject, Home, Middleware, Project, ProjectHome, Team } from "@/page";
 import { Button, Result, Spin } from "antd";
 import { lazy, type ComponentType } from "react";
-import { type RouteObject, type unstable_MiddlewareFunction } from "react-router";
+import { redirect, unstable_createContext, type LoaderFunction, type RouteObject, type unstable_MiddlewareFunction } from "react-router";
 
 /** 用于懒加载组件 */
 export function createComponent(com: () => Promise<{ default: ComponentType<any>; }>) {
@@ -9,7 +9,6 @@ export function createComponent(com: () => Promise<{ default: ComponentType<any>
   return Component;
 }
 
-// Typed middleware (hoisted above routes to avoid TDZ)
 const loggingMiddleware: unstable_MiddlewareFunction = async ({ request }, next) => {
   const url = new URL(request.url);
   console.log(`Starting navigation: ${url.pathname}${url.search}`);
@@ -17,6 +16,60 @@ const loggingMiddleware: unstable_MiddlewareFunction = async ({ request }, next)
   const result = await next();
   console.log(`Navigation completed in ${performance.now() - start}ms`);
   return result;
+};
+
+export interface User {
+  id: number,
+  name: string,
+  age: number;
+}
+
+export const userContext = unstable_createContext<User>();
+
+const getUserId = () => {
+  // 模拟可能返回的情况
+  const arr = [null, 2, 5, 23, 6, 1, 74, NaN, 0, undefined, 31];
+  const idx = Math.floor(Math.random() * arr.length);
+  return arr[idx];
+};
+
+// 实际项目中应替换为真是的API
+const getUserById = async (userId: number) => {
+  return new Promise<User>(resolve => {
+    setTimeout(() => {
+      resolve({
+        name: '张三',
+        age: 22,
+        id: userId
+      });
+    }, 1000);
+  });
+};
+
+const authMiddleware: unstable_MiddlewareFunction = async ({ context }, next) => {
+  console.log('Auth middleware triggered');
+  const userId = getUserId();
+  console.log('User ID from getUserId:', userId);
+
+  if (!userId) {
+    console.log('No user ID, redirecting to /login');
+    throw redirect('/login');
+  }
+
+  const user = await getUserById(userId);
+  console.log('User fetched:', user);
+  context.set(userContext, user);
+  console.log('User set in context');
+
+  return next();
+};
+
+const authLoader: LoaderFunction = ({ context }) => {
+  const user = context.get(userContext);
+  if (!user) {
+    throw redirect('/login');
+  }
+  return user;
 };
 
 // 模拟fetchTeam函数，实际项目中应替换为真实的API调用
@@ -36,6 +89,7 @@ const routes: RouteObject[] = [
     handle: {
       title: '首页'
     },
+    HydrateFallback: () => <Spin fullscreen />,
     children: [
       // Index routes render into their parent's Outlet at their parent's URL
       // (like a default route)
@@ -58,24 +112,30 @@ const routes: RouteObject[] = [
     // 日志记录中间件（服务端/静态处理）
     unstable_middleware: [loggingMiddleware],
     children: [
-      { path: 'authmiddleware', Component: AuthMiddleWare },
-    ]
+      {
+        path: 'authmiddleware',
+        Component: AuthMiddleWare,
+        loader: authLoader,
+        unstable_middleware: [authMiddleware],
+        children: []
+      },
+    ],
+    HydrateFallback: () => <Spin fullscreen />
+  },
+  {
+    path: '/login',
+    Component: createComponent(() => import('@/page/middleWare/loginMiddleWare')),
+    HydrateFallback: () => <Spin fullscreen />
   },
   {
     // no component,just path...
     path: '/projects',
     children: [
-      {
-        index: true, Component: ProjectHome
-      },
+      { index: true, Component: ProjectHome },
       // 路径以冒号(`:`) 开头，则它成为`动态段`。当路由与URL匹配时，动态段将从URL中解析出来，并
       // 作为参数提供给其它路由器
-      {
-        path: ':pid', Component: Project
-      },
-      {
-        path: ':pid?/edit', Component: EditProject
-      }
+      { path: ':pid', Component: Project },
+      { path: ':pid?/edit', Component: EditProject }
     ]
     // This creates the routes `/projects` ,`projects/:pid`,and `/project/:pid/edit` without
     // introducing a layout component.
