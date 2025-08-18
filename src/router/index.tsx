@@ -53,7 +53,7 @@ const routes: RouteObject[] = [
         path: ':pid', Component: Project
       },
       {
-        path: ':pic/edit', Component: EditProject
+        path: ':pid?/edit', Component: EditProject
       }
     ]
     // This creates the routes `/projects` ,`projects/:pid`,and `/project/:pid/edit` without
@@ -70,6 +70,19 @@ const routes: RouteObject[] = [
     HydrateFallback: () => <Spin fullscreen />
   },
   {
+    // 通配符(星号) 选择器。如果一个路由路径模式以 `/*` 结尾，那么它将
+    // 匹配跟随的任何字符，包括其它 `/` 字符
+    path: 'splat/*',
+    Component: createComponent(() => import('@/page/splat')),
+    loader: async ({ params }) => {
+      const { "*": splat } = params;
+      console.log("🚀 ~ splat:", splat);
+      console.log(`params['*']`, params['*']);
+    }
+  },
+  {
+    // 通配符路径，会匹配所有未被其它路由规则匹配的路径。
+    // 再 react-router中，这种通配符路由通常放在路由配置的最后，作为`兜底`路由。
     path: '*',
     element: (
       <Result
@@ -79,6 +92,7 @@ const routes: RouteObject[] = [
         extra={<Button type="primary" href="/">Return Home</Button>}
       />
     ),
+    // 为该路由设置的元数据
     handle: {
       title: '404',
     },

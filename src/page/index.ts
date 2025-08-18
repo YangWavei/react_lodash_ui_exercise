@@ -4,4 +4,5 @@ export { default as EditProject } from '@/page/projects/EditProject';
 export { default as Project } from '@/page/projects/Project';
 export { default as ProjectHome } from '@/page/projects/ProjectHome';
 export { default as Rootlayout } from '@/page/RootLayout';
+export { default as Splat } from '@/page/splat';
 export { default as Team } from '@/page/team/team';
