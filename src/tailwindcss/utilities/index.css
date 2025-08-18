@@ -4,5 +4,5 @@
 }
 
 @utility flex-center {
-  @apply justify-center items-center;
+  @apply flex justify-center items-center;
 }

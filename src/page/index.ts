@@ -1,2 +1,7 @@
-export { default as Detail } from './detail';
-export { default as Home } from './home';
+export { default as Detail } from '@/page/detail';
+export { default as Home } from '@/page/home';
+export { default as EditProject } from '@/page/projects/EditProject';
+export { default as Project } from '@/page/projects/Project';
+export { default as ProjectHome } from '@/page/projects/ProjectHome';
+export { default as Rootlayout } from '@/page/RootLayout';
+export { default as Team } from '@/page/team/team';
