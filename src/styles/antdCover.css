@@ -1,0 +1,32 @@
+/* :where 是css中的一个伪类元素选择器，也被称为函数型伪类选择器 */
+/* 特性：
+    1、不会增加选择器的权重
+    2、这个选择器会选择所有具有被包裹类的元素
+*/
+:where(.css-dev-only-do-not-override-1du7582) a {
+  color: #878d97;
+}
+
+:where(.css-dev-only-do-not-override-1du7582) a:hover {
+  color: #e5e7eb;
+}
+
+:where(.css-dev-only-do-not-override-1rfzxih) a {
+  color: #878d97;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: color 300;
+  -webkit-text-decoration-skip: objects;
+}
+
+:where(.css-dev-only-do-not-override-1rfzxih) a:hover {
+  color: #374151;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: color 300;
+  -webkit-text-decoration-skip: objects;
+}

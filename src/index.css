@@ -1,11 +1,52 @@
 /* antd 样式兼容 */
 @layer theme, base, antd, components, utilities;
 @import "tailwindcss";
-@import "./tailwindcss/base/font.css";
-@import "./tailwindcss/utilities/index.css";
+@import "./styles/font.css";
+@import "./styles/utilities.css";
 @import "tw-animate-css";
-
+@import "./styles/antdCover.css";
 @custom-variant dark (&:is(.dark *));
+
+* {
+  scrollbar-color: var(--c-scrollbar) var(--background);
+}
+
+::selection {
+  background: #8884;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: var(--c-bg);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-scrollbar);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-scrollbar-hover);
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-size: 1.05rem;
+}
+
+@theme {
+  --font-Inter: var(--font-family-inter);
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -48,7 +89,9 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --c-scrollbar: #eeeeee;
+  --c-scrollbar-hover: #bbb;
+  --foreground: oklch(0% 0 0 / 0.3);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -78,11 +121,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --font-family-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #050505;
   --foreground: oklch(0.985 0 0);
+  --c-scrollbar: #111;
+  --c-scrollbar-hover: #222;
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -121,5 +167,20 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* 提高选择器优先级，确保覆盖 Antd 样式 */
+  html,
+  body,
+  #root,
+  #root>div {
+    font-family: var(--font-family-inter) !important;
+  }
+
+  /* 特别针对 Antd 组件 */
+  .ant-app,
+  .ant-app * {
+    font-family: var(--font-family-inter) !important;
+    font-size: 1.05rem;
   }
 }

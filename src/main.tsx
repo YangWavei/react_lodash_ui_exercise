@@ -8,7 +8,7 @@ import "./index.css";
 // 创建一个包装组件来动态控制主题
 const ThemedApp = () => {
   const { isDark } = useToggleMode();
-  
+
   return (
     <ConfigProvider
       theme={{
