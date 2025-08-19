@@ -1,12 +1,12 @@
-import { addTodo, removeTodo, setFilter, store, toggleDone } from "@/store";
+import { addTodo, removeTodo, setFilter, todostore, toggleDone } from "@/store";
 import { Button, Flex, Input, Radio, type InputRef, type RadioChangeEvent } from "antd";
 import clsx from "clsx";
 import { CircleCheckBig, ListChecks, LoaderPinwheel } from "lucide-react";
 import { useRef } from "react";
 import { useSnapshot } from "valtio";
 export function Todos() {
-  // To access the data in the store,we'll use `useSnapshot`
-  const snap = useSnapshot(store);
+  // To access the data in the todostore,we'll use `useSnapshot`
+  const snap = useSnapshot(todostore);
   return (
     <ul>
       {snap.todos.filter(({ status }) => status === snap.filter || snap.filter === 'all')
@@ -25,7 +25,7 @@ export function Todos() {
 };
 
 export const Filters = () => {
-  const snap = useSnapshot(store);
+  const snap = useSnapshot(todostore);
 
   const onChange = (e: RadioChangeEvent) => {
     // 直接使用事件中的值来设置过滤器
@@ -35,7 +35,7 @@ export const Filters = () => {
   return (
     <Radio.Group
       onChange={onChange}
-      value={snap.filter} // 使用 store 中的 filter 状态
+      value={snap.filter} // 使用 todostore 中的 filter 状态
       options={[
         {
           value: 'pending',
