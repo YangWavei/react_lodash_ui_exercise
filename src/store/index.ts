@@ -1,7 +1,7 @@
 import { proxy } from "valtio";
 
 type Status = 'pending' | 'completed';
-type Filter = Status | 'all';
+export type Filter = Status | 'all';
 type Todo = {
   description: string,
   status: Status,
