@@ -1,4 +1,4 @@
-import { AuthMiddleWare, EditProject, Home, Middleware, Project, ProjectHome, Team } from "@/page";
+import { AuthMiddleWare, EditProject, Home, Middleware, Project, ProjectHome, Rootlayout, Team } from "@/page";
 import { Button, Result, Spin } from "antd";
 import { lazy, type ComponentType } from "react";
 import { redirect, unstable_createContext, type LoaderFunction, type RouteObject, type unstable_MiddlewareFunction } from "react-router";
@@ -86,7 +86,7 @@ async function fetchTeam(teamId: string | undefined, teamLocation: string | unde
 const routes: RouteObject[] = [
   {
     path: '/',
-    Component: createComponent(() => import('@/page/RootLayout')),
+    Component: Rootlayout,
     handle: {
       title: '首页'
     },
